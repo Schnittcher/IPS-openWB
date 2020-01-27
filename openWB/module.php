@@ -66,7 +66,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableBoolean('ladestatusLP2', $this->Translate('Charging Status (lp2)'), '', 0);
             $this->RegisterVariableBoolean('ladestatusLP3', $this->Translate('Charging Status (lp3)'), '', 0);
 
-            $this->RegisterVariableBoolean('zielladungaktiv', $this->Translate('Destination Charge active'), '', 0);
+            $this->RegisterVariableInteger('zielladungaktiv', $this->Translate('Destination Charge active'), '', 0);
 
             $this->RegisterVariableFloat('lla1LP1', $this->Translate('Ampere 1 (lp1)'), '~Ampere', 0);
             $this->RegisterVariableFloat('lla2LP1', $this->Translate('Ampere 2 (lp1)'), '~Ampere', 0);
