@@ -142,7 +142,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $result = $this->sendRequest('get', 'all');
 
             foreach ($result as $key => $value) {
-                if ($this->GetIDForIdent($key) != false) {
+                if (@$this->GetIDForIdent($key) != false) {
 					$this->SendDebug($this->GetIDForIdent($key), 'Key: ' . $key . ' - Value: ' . $value, 0);
                     $this->SetValue($this->GetIDForIdent($key), $value);
                 } else {
