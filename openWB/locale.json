@@ -47,7 +47,10 @@
             "SoC of storage": "SoC des Speichers",
             "SoC EV (lp1)": "SoC EV (lp1)",
             "SoC EV (lp2)": "SoC EV (lp2)",
-            "Memory Performance": "Speicherleistung"
+            "Memory Performance": "Speicherleistung",
+            "Charge active (lp1)": "Ladung aktiv (lp1)",
+            "Charge active (lp2)": "Ladung aktiv (lp2)",
+            "Charge active (lp3)": "Ladung aktiv (lp3)"
         }
     }
 }

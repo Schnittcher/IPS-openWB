@@ -72,9 +72,13 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('lla2LP1', $this->Translate('Ampere 2 (lp1)'), '~Ampere', 0);
             $this->RegisterVariableFloat('lla3LP1', $this->Translate('Ampere 3 (lp1)'), '~Ampere', 0);
 
-            $this->RegisterVariableFloat('lla1LP2', $this->Translate('Ampere 1 (lp1)'), '~Ampere', 0);
+            $this->RegisterVariableFloat('lla1LP2', $this->Translate('Ampere 1 (lp2)'), '~Ampere', 0);
             $this->RegisterVariableFloat('lla2LP2', $this->Translate('Ampere 2 (lp2)'), '~Ampere', 0);
-            $this->RegisterVariableFloat('lla3LP2', $this->Translate('Ampere 3 (lp3)'), '~Ampere', 0);
+			$this->RegisterVariableFloat('lla3LP2', $this->Translate('Ampere 3 (lp2)'), '~Ampere', 0);
+			
+			$this->RegisterVariableFloat('lla1LP3', $this->Translate('Ampere 1 (lp3)'), '~Ampere', 0);
+            $this->RegisterVariableFloat('lla2LP3', $this->Translate('Ampere 2 (lp3)'), '~Ampere', 0);
+            $this->RegisterVariableFloat('lla3LP3', $this->Translate('Ampere 3 (lp3)'), '~Ampere', 0);
 
             $this->RegisterVariableFloat('llkwhLP1', $this->Translate('Meter Reading (lp1)'), '', 0);
             $this->RegisterVariableFloat('llkwhLP2', $this->Translate('Meter Reading (lp2)'), '', 0);
@@ -86,7 +90,21 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 
             $this->RegisterVariableFloat('speichersoc', $this->Translate('SoC of storage'), '', 0);
             $this->RegisterVariableFloat('socLP1', $this->Translate('SoC EV (lp1)'), '', 0);
-            $this->RegisterVariableFloat('socLP2', $this->Translate('SoC EV (lp2)'), '', 0);
+			$this->RegisterVariableFloat('socLP2', $this->Translate('SoC EV (lp2)'), '', 0);
+
+			$this->RegisterVariableFloat('ladungaktivLP1', $this->Translate('Charge active (lp1)'), '', 0);
+			$this->RegisterVariableFloat('ladungaktivLP2', $this->Translate('Charge active (lp2)'), '', 0);
+			$this->RegisterVariableFloat('ladungaktivLP3', $this->Translate('Charge active (lp3)'), '', 0);
+
+			$this->RegisterVariableFloat('chargestatLP1', $this->Translate('Chargestat (lp1)'), '', 0);
+			$this->RegisterVariableFloat('chargestatLP2', $this->Translate('Chargestat (lp2)'), '', 0);
+
+			$this->RegisterVariableFloat('plugstatLP1', $this->Translate('Plugstat (lp1)'), '', 0);
+			$this->RegisterVariableFloat('plugstatLP1', $this->Translate('Plugstat (lp2)'), '', 0);
+
+			$this->RegisterVariableFloat('restzeitlp1m', $this->Translate('Rest Time (lp2)'), '', 0);
+			$this->RegisterVariableFloat('restzeitlp2m', $this->Translate('Rest Time (lp1)'), '', 0);
+			$this->RegisterVariableFloat('restzeitlp3m', $this->Translate('Rest Time (lp3)'), '', 0);
 
             $this->RegisterVariableFloat('speicherleistung', $this->Translate('Memory Performance'), '', 0);
         }
