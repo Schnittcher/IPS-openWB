@@ -5,6 +5,8 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 
     class openWB extends IPSModule
     {
+		use VariableProfileHelper;
+
         public function Create()
         {
             //Never delete this line!
