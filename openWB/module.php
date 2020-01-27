@@ -100,10 +100,10 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 			$this->RegisterVariableFloat('chargestatLP2', $this->Translate('Chargestat (lp2)'), '', 0);
 
 			$this->RegisterVariableFloat('plugstatLP1', $this->Translate('Plugstat (lp1)'), '', 0);
-			$this->RegisterVariableFloat('plugstatLP1', $this->Translate('Plugstat (lp2)'), '', 0);
+			$this->RegisterVariableFloat('plugstatLP2', $this->Translate('Plugstat (lp2)'), '', 0);
 
-			$this->RegisterVariableFloat('restzeitlp1m', $this->Translate('Rest Time (lp2)'), '', 0);
-			$this->RegisterVariableFloat('restzeitlp2m', $this->Translate('Rest Time (lp1)'), '', 0);
+			$this->RegisterVariableFloat('restzeitlp1m', $this->Translate('Rest Time (lp1)'), '', 0);
+			$this->RegisterVariableFloat('restzeitlp2m', $this->Translate('Rest Time (lp2)'), '', 0);
 			$this->RegisterVariableFloat('restzeitlp3m', $this->Translate('Rest Time (lp3)'), '', 0);
 
             $this->RegisterVariableFloat('speicherleistung', $this->Translate('Memory Performance'), '', 0);
