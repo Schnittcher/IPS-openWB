@@ -139,8 +139,9 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 
         public function UpdateState()
         {
-            $result = $this->sendRequest('get', 'all');
-
+			$result = $this->sendRequest('get', 'all');
+			
+			var_dump($result['zielladungaktiv']);
             foreach ($result as $key => $value) {
                 if (@$this->GetIDForIdent($key) != false) {
 					$this->SendDebug($this->GetIDForIdent($key), 'Key: ' . $key . ' - Value: ' . $value, 0);
