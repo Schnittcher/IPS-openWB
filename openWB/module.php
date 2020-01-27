@@ -150,7 +150,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             }
         }
 
-        private function sendRequest(string $endpoint, variant $value)
+        private function sendRequest(string $endpoint, $value)
         {
             if ($this->ReadPropertyString('Host') == '') {
                 return false;
