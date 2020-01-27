@@ -139,7 +139,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 
         public function UpdateState()
         {
-            $reult = $this->sendRequest('get', 'all');
+            $result = $this->sendRequest('get', 'all');
 
             foreach ($result as $key => $value) {
                 if ($this->GetIDForIdent($key) != false) {
