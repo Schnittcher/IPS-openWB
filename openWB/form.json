@@ -1,0 +1,23 @@
+{
+    "elements": [{
+        "name": "Host",
+        "type": "ValidationTextBox",
+        "caption": "IP-Adresse der openWB"
+      },
+        {
+          "name": "UpdateInterval",
+          "type": "IntervalBox",
+          "caption": "Seconds"
+        }
+      ],
+    "actions": [],
+    "status": [{ "code": 201,
+        "icon": "error",
+        "caption": "Invalid JSON"
+      },
+      { "code": 202,
+        "icon": "error",
+        "caption": "openWB unreachable"
+      }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "id": "{1E991E6C-D1FE-11B0-9F81-8198881F5278}",
+    "name": "openWB",
+    "type": 3,
+    "vendor": "openWB",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "OPENWB",
+    "url": "https://deinsmarthome.info"
+}

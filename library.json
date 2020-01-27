@@ -1,0 +1,12 @@
+{
+    "id": "{EBDD5B02-AEFF-DC59-A998-302AC48BD7A1}",
+    "author": "Kai Schnittcher",
+    "name": "openWB",
+    "url": "https://deinsmarthome.info",
+    "compatibility": {
+        "version": "5.0"
+    },
+    "version": "1.0",
+    "build": 0,
+    "date": 0
+}
