@@ -144,7 +144,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             foreach ($result as $key => $value) {
                 if (@$this->GetIDForIdent($key) != false) {
 					$this->SendDebug($this->GetIDForIdent($key), 'Key: ' . $key . ' - Value: ' . $value, 0);
-                    $this->SetValue($this->GetIDForIdent($key), $value);
+                    $this->SetValue($key, $value);
                 } else {
                     $this->SendDebug('Variable not exist', 'Key: ' . $key . ' - Value: ' . $value, 0);
                 }
