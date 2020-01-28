@@ -25,6 +25,10 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             ]);
 
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', 'A', '', 10, 32, 1);
+            $this->RegisterProfileInteger('OWB.KM', '', 'km', '', 0, 0, 1);
+            $this->RegisterProfileInteger('OWB.Minuten', '', 'Minuten', '', 0, 0, 1);
+            $this->RegisterProfileInteger('OWB.Minuten', '', 'Minuten', '', 0, 0, 1);
+            $this->RegisterProfileFloat('OWB.Wh', '', 'Wh', '', 0, 0, 0.1, 1);
 
             $this->RegisterVariableInteger('lademodus', $this->Translate('Loading Mode'), 'OWB.Lademodus', 0);
             $this->EnableAction('lademodus');
@@ -33,17 +37,17 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('minimalstromstaerke', $this->Translate('Minimal Amperage'), '~Ampere', 0);
             $this->RegisterVariableFloat('maximalstromstaerke', $this->Translate('Maximum Amperage'), '~Ampere', 0);
             $this->RegisterVariableInteger('llsoll', $this->Translate('Target charging current specification'), '', 0);
-            $this->RegisterVariableString('restzeitlp1', $this->Translate('Restzeit (lp1)'), '', 0);
-            $this->RegisterVariableString('restzeitlp2', $this->Translate('Restzeit (lp2)'), '', 0);
-            $this->RegisterVariableString('restzeitlp3', $this->Translate('Restzeit (lp3)'), '', 0);
+            $this->RegisterVariableString('restzeitlp1', $this->Translate('Restzeit (lp1)'), 'OWB.Minuten', 0);
+            $this->RegisterVariableString('restzeitlp2', $this->Translate('Restzeit (lp2)'), 'OWB.Minuten', 0);
+            $this->RegisterVariableString('restzeitlp3', $this->Translate('Restzeit (lp3)'), 'OWB.Minuten', 0);
 
-            $this->RegisterVariableFloat('gelkwhlp1', $this->Translate('In the current loading process (lp1)'), '', 0);
-            $this->RegisterVariableFloat('gelkwhlp2', $this->Translate('In the current loading process (lp2)'), '', 0);
-            $this->RegisterVariableFloat('gelkwhlp3', $this->Translate('In the current loading process (lp3)'), '', 0);
+            $this->RegisterVariableFloat('gelkwhlp1', $this->Translate('In the current loading process (lp1)'), '~Electricity', 0);
+            $this->RegisterVariableFloat('gelkwhlp2', $this->Translate('In the current loading process (lp2)'), '~Electricity', 0);
+            $this->RegisterVariableFloat('gelkwhlp3', $this->Translate('In the current loading process (lp3)'), '~Electricity', 0);
 
-            $this->RegisterVariableFloat('gelrlp1', $this->Translate('km loaded in the current charging process (lp1)'), '', 0);
-            $this->RegisterVariableFloat('gelrlp2', $this->Translate('km loaded in the current charging process (lp1)'), '', 0);
-            $this->RegisterVariableFloat('gelrlp3', $this->Translate('km loaded in the current charging process (lp1)'), '', 0);
+            $this->RegisterVariableFloat('gelrlp1', $this->Translate('km loaded in the current charging process (lp1)'), 'OWB.KM', 0);
+            $this->RegisterVariableFloat('gelrlp2', $this->Translate('km loaded in the current charging process (lp2)'), 'OWB.KM', 0);
+            $this->RegisterVariableFloat('gelrlp3', $this->Translate('km loaded in the current charging process (lp3)'), 'OWB.KM', 0);
 
             $this->RegisterVariableFloat('llgesamt', $this->Translate('Total charging power of all charging points'), '', 0);
 
@@ -51,12 +55,12 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('evua2', $this->Translate('Ampere reference at the EVU (2)'), '~Ampere', 0);
             $this->RegisterVariableFloat('evua3', $this->Translate('Ampere reference at the EVU (3)'), '~Ampere', 0);
 
-            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '', 0);
-            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '', 0);
-            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '', 0);
+            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
+            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
+            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
 
-            $this->RegisterVariableInteger('evuw', $this->Translate('Withdrawal / excess at the EVU'), '', 0);
-            $this->RegisterVariableInteger('pvw', $this->Translate('PV power'), '', 0);
+            $this->RegisterVariableFloat('evuw', $this->Translate('Withdrawal / excess at the EVU'), '~Watt.14490', 0);
+            $this->RegisterVariableInteger('pvw', $this->Translate('PV power'), '~Watt.14490', 0);
 
             $this->RegisterVariableFloat('evuv1', $this->Translate('Volts at the EVU (1)'), '~Volt', 0);
             $this->RegisterVariableFloat('evuv2', $this->Translate('Volts at the EVU (2)'), '~Volt', 0);
@@ -80,17 +84,17 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('lla2LP3', $this->Translate('Ampere 2 (lp3)'), '~Ampere', 0);
             $this->RegisterVariableFloat('lla3LP3', $this->Translate('Ampere 3 (lp3)'), '~Ampere', 0);
 
-            $this->RegisterVariableFloat('llkwhLP1', $this->Translate('Meter Reading (lp1)'), '', 0);
-            $this->RegisterVariableFloat('llkwhLP2', $this->Translate('Meter Reading (lp2)'), '', 0);
-            $this->RegisterVariableFloat('llkwhLP3', $this->Translate('Meter Reading (lp3)'), '', 0);
+            $this->RegisterVariableFloat('llkwhLP1', $this->Translate('Meter Reading (lp1)'), '~Electricity', 0);
+            $this->RegisterVariableFloat('llkwhLP2', $this->Translate('Meter Reading (lp2)'), '~Electricity', 0);
+            $this->RegisterVariableFloat('llkwhLP3', $this->Translate('Meter Reading (lp3)'), '~Electricity', 0);
 
-            $this->RegisterVariableFloat('evubezugWh', $this->Translate('Meter reading reference"'), '', 0);
-            $this->RegisterVariableFloat('evueinspeisungWh', $this->Translate('Meter reading infeed'), '', 0);
-            $this->RegisterVariableFloat('pvWh', $this->Translate('Meter reading PV'), '', 0);
+            $this->RegisterVariableFloat('evubezugWh', $this->Translate('Meter reading reference'), 'OWB.Wh', 0);
+            $this->RegisterVariableFloat('evueinspeisungWh', $this->Translate('Meter reading infeed'), 'OWB.Wh', 0);
+            $this->RegisterVariableFloat('pvWh', $this->Translate('Meter reading PV'), 'OWB.Wh', 0);
 
-            $this->RegisterVariableFloat('speichersoc', $this->Translate('SoC of storage'), '', 0);
-            $this->RegisterVariableFloat('socLP1', $this->Translate('SoC EV (lp1)'), '', 0);
-            $this->RegisterVariableFloat('socLP2', $this->Translate('SoC EV (lp2)'), '', 0);
+            $this->RegisterVariableFloat('speichersoc', $this->Translate('SoC of storage'), '~Intensity.100', 0);
+            $this->RegisterVariableFloat('socLP1', $this->Translate('SoC EV (lp1)'), '~Intensity.100', 0);
+            $this->RegisterVariableFloat('socLP2', $this->Translate('SoC EV (lp2)'), '~Intensity.100', 0);
 
             $this->RegisterVariableFloat('ladungaktivLP1', $this->Translate('Charge active (lp1)'), '', 0);
             $this->RegisterVariableFloat('ladungaktivLP2', $this->Translate('Charge active (lp2)'), '', 0);
@@ -147,7 +151,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
                         }
                     break;
                 case 'jetztll':
-                    $this->sendRequest('jetztll', $value);
+                    $this->sendRequest('jetztll', $Value);
                     break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
