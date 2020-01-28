@@ -59,7 +59,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
 
             $this->RegisterVariableFloat('evuw', $this->Translate('Withdrawal / excess at the EVU'), '~Watt.14490', 0);
-            $this->RegisterVariableInteger('pvw', $this->Translate('PV power'), '~Watt.14490', 0);
+            $this->RegisterVariableFloat('pvw', $this->Translate('PV power'), '~Watt.14490', 0);
 
             $this->RegisterVariableFloat('evuv1', $this->Translate('Volts at the EVU (1)'), '~Volt', 0);
             $this->RegisterVariableFloat('evuv2', $this->Translate('Volts at the EVU (2)'), '~Volt', 0);
@@ -91,9 +91,9 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('evueinspeisungWh', $this->Translate('Meter reading infeed'), 'OWB.Wh', 0);
             $this->RegisterVariableFloat('pvWh', $this->Translate('Meter reading PV'), 'OWB.Wh', 0);
 
-            $this->RegisterVariableFloat('speichersoc', $this->Translate('SoC of storage'), '~Intensity.100', 0);
-            $this->RegisterVariableFloat('socLP1', $this->Translate('SoC EV (lp1)'), '~Intensity.100', 0);
-            $this->RegisterVariableFloat('socLP2', $this->Translate('SoC EV (lp2)'), '~Intensity.100', 0);
+            $this->RegisterVariableInteger('speichersoc', $this->Translate('SoC of storage'), '~Intensity.100', 0);
+            $this->RegisterVariableInteger('socLP1', $this->Translate('SoC EV (lp1)'), '~Intensity.100', 0);
+            $this->RegisterVariableInteger('socLP2', $this->Translate('SoC EV (lp2)'), '~Intensity.100', 0);
 
             $this->RegisterVariableFloat('ladungaktivLP1', $this->Translate('Charge active (lp1)'), '', 0);
             $this->RegisterVariableFloat('ladungaktivLP2', $this->Translate('Charge active (lp2)'), '', 0);
