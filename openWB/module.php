@@ -26,7 +26,7 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', 'A', 10, 32, 1);
             $this->RegisterProfileInteger('OWB.Minuten', '', 'Minuten', '', 0, 0, 1);
-            $this->RegisterProfileFloat('OWB.KM', '', '', 'km', 0, 0, 1);
+            $this->RegisterProfileFloat('OWB.KM', '', '', 'km', 0, 0, 1,1);
             $this->RegisterProfileFloat('OWB.Wh', '', '', 'Wh', 0, 0, 0.1, 1);
 
             $this->RegisterVariableInteger('lademodus', $this->Translate('Loading Mode'), 'OWB.Lademodus', 0);
