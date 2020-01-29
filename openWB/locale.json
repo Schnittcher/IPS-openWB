@@ -3,7 +3,9 @@
         "de": {
             "date": "Datum",
             "Loading Mode": "Lademodus",
-            "Loading Capacity": "Ladeleistung",
+            "Loading Capacity (lp1)": "Ladeleistung LP1",
+            "Loading Capacity (lp2)": "Ladeleistung LP2",
+            "Loading Capacity (lp3)": "Ladeleistung LP3",
             "Minimal Amperage": "Minimalstromstärke",
             "Maximum Amperage": "Maximalstromstärke",
             "Target charging current specification": "Soll Ladestromvorgabe",

@@ -31,8 +31,16 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
 
             $this->RegisterVariableInteger('lademodus', $this->Translate('Loading Mode'), 'OWB.Lademodus', 0);
             $this->EnableAction('lademodus');
-            $this->RegisterVariableInteger('jetztll', $this->Translate('Loading Capacity'), 'OWB.Ladeleistung', 0);
-            $this->EnableAction('jetztll');
+
+            $this->RegisterVariableInteger('sofortlllp1', $this->Translate('Loading Capacity (lp1)'), 'OWB.Ladeleistung', 0);
+            $this->EnableAction('sofortlllp1');
+
+            $this->RegisterVariableInteger('sofortlllp2', $this->Translate('Loading Capacity (lp2)'), 'OWB.Ladeleistung', 0);
+            $this->EnableAction('sofortlllp2');
+
+            $this->RegisterVariableInteger('sofortlllp3', $this->Translate('Loading Capacity (lp3)'), 'OWB.Ladeleistung', 0);
+            $this->EnableAction('sofortlllp3');
+
             $this->RegisterVariableFloat('minimalstromstaerke', $this->Translate('Minimal Amperage'), '~Ampere', 0);
             $this->RegisterVariableFloat('maximalstromstaerke', $this->Translate('Maximum Amperage'), '~Ampere', 0);
             $this->RegisterVariableInteger('llsoll', $this->Translate('Target charging current specification'), '', 0);
@@ -149,8 +157,14 @@ require_once __DIR__ . '/../libs/.helper/VariableProfileHelper.php';
                                 break;
                         }
                     break;
-                case 'jetztll':
-                    $this->sendRequest('jetztll', $Value);
+                case 'sofortlllp1':
+                    $this->sendRequest('sofortlllp1', $Value);
+                    break;
+                case 'sofortlllp2':
+                    $this->sendRequest('sofortlllp2', $Value);
+                    break;
+                case 'sofortlllp3':
+                    $this->sendRequest('sofortlllp3', $Value);
                     break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
