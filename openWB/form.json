@@ -2,13 +2,12 @@
     "elements": [{
         "name": "Host",
         "type": "ValidationTextBox",
-        "caption": "IP-Adresse der openWB"
+        "caption": "IP address of the openWB"
       },
-        {
+        { "type": "NumberSpinner",
           "name": "UpdateInterval",
-          "type": "IntervalBox",
-          "caption": "Seconds"
-        }
+          "caption": "Update Interval",
+          "suffix": "seconds"}
       ],
     "actions": [],
     "status": [{ "code": 201,
