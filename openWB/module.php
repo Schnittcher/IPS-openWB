@@ -63,8 +63,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('evua3', $this->Translate('Ampere reference at the EVU (3)'), '~Ampere', 0);
 
             $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
-            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
-            $this->RegisterVariableFloat('lllp1', $this->Translate('Charging Power (lp1)'), '~Watt.14490', 0);
+            $this->RegisterVariableFloat('lllp2', $this->Translate('Charging Power (lp2)'), '~Watt.14490', 0);
+            $this->RegisterVariableFloat('lllp3', $this->Translate('Charging Power (lp3)'), '~Watt.14490', 0);
 
             $this->RegisterVariableFloat('evuw', $this->Translate('Withdrawal / excess at the EVU'), '~Watt.14490', 0);
             $this->RegisterVariableFloat('pvw', $this->Translate('PV power'), '~Watt.14490', 0);
