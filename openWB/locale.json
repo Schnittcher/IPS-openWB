@@ -1,6 +1,9 @@
 {
     "translations": {
         "de": {
+            "IP address of the openWB": "IP-Adresse der openWB",
+            "Update Interval": "Updateintervall",
+            "seconds": "Sekunden",
             "date": "Datum",
             "Loading Mode": "Lademodus",
             "Loading Capacity (lp1)": "Ladeleistung LP1",
