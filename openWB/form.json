@@ -1,6 +1,11 @@
 {
     "elements": [{
-        "name": "Host",
+         "name": "Open", 
+        "type": "CheckBox", 
+        "caption": "Active" 
+      },
+      {
+       "name": "Host",
         "type": "ValidationTextBox",
         "caption": "IP address of the openWB"
       },
