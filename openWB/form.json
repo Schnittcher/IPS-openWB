@@ -1,6 +1,6 @@
 {
     "elements": [{
-         "name": "Active", 
+         "name": "Open", 
         "type": "CheckBox", 
         "caption": "Active" 
       },
