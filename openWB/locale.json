@@ -1,6 +1,7 @@
 {
     "translations": {
         "de": {
+            "Active": "Aktiv",
             "IP address of the openWB": "IP-Adresse der openWB",
             "Update Interval": "Updateintervall",
             "seconds": "Sekunden",
