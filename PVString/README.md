@@ -1,5 +1,5 @@
-# openWB
-   Modul zu Integration der der openWB (www.openwb.de) in IP-Symcon.
+# PVString
+      Modul zu Integration der einzelnen PV Strings.
      
    ## Inhaltverzeichnis
    1. [Konfiguration](#1-konfiguration)
@@ -9,8 +9,8 @@
    
    Feld | Beschreibung
    ------------ | ----------------
-   IP-Adresse | Hier wird die IP-Adresse der openWB eingetragen.
-   UpdateInterval | Hier wird in Sekunden eingetragen, wie oft neue Werte abgefragt werden sollen.
+   MQTT Topic | Hier wird das Topic der openWB Wallbox hinterlegt.
+   PV String | Die Nummer des PV Strings, für welchen diese Instanz dienen soll.
    
    ## 2. Funktionen
    Keine öffentlichen Funktionen vorhanden.
