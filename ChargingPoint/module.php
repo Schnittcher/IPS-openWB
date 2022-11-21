@@ -19,12 +19,12 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterProfileIntegerEx('OWB.ChargeLimitation', 'Power', '', '', [
                 [0, $this->translate('Off'),  '', -1],
                 [1, $this->translate('kWh charge'),  '', -1],
-				[2, $this->translate('SoC charge'),  '', -1]
+                [2, $this->translate('SoC charge'),  '', -1]
             ]);
-			
+
             $this->RegisterProfileIntegerEx('OWB.ResetDirectCharge', 'Power', '', '', [
                 [1, $this->translate('Reset'),  '', -1],
-            ]);				
+            ]);
 
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', ' A', 6, 32, 1);
             $this->RegisterProfileInteger('OWB.Minuten', '', '', ' Minuten', 0, 0, 1);
@@ -48,8 +48,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableBoolean('LPboolSocConfigured', $this->Translate('LP SoC configured'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPboolSoCManual', $this->Translate('LP SOC manual'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPChargePointEnabled', $this->Translate('LP ChargePoint Enabled'), '~Switch', 0);
-			$this->EnableAction('LPChargePointEnabled');
-			$this->RegisterVariableBoolean('LPChargeStatus', $this->Translate('LP Charge Status'), '~Switch', 0);
+            $this->EnableAction('LPChargePointEnabled');
+            $this->RegisterVariableBoolean('LPChargeStatus', $this->Translate('LP Charge Status'), '~Switch', 0);
             $this->RegisterVariableInteger('LPcountPhasesInUse', $this->Translate('LP Phases in use'), '', 0);
 
             $this->RegisterVariableInteger('LPenergyConsumptionPer100km', $this->Translate('LP Energy Consumption per 100km'), '', 0);
@@ -60,8 +60,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('LPkWhCounter', $this->Translate('LP Counter'), '~Electricity', 0);
             $this->RegisterVariableFloat('LPkWhDailyCharged', $this->Translate('LP Daily Charged'), '~Electricity', 0);
             $this->RegisterVariableString('LPlastRfid', $this->Translate('LP Last RFID'), '', 0);
-			
-			//pluggedladungakt
+
+            //pluggedladungakt
             //plugStartkWh
             //socFaultState
             //socFaultStr
@@ -71,19 +71,18 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('LPVPhase2', $this->Translate('LP Phase 2 Voltage'), '~Volt', 0);
             $this->RegisterVariableFloat('LPVPhase3', $this->Translate('LP Phase 3 Voltage'), '~Volt', 0);
             $this->RegisterVariableFloat('LPW', $this->Translate('LP Charging Power'), '~Electricity', 0);
-			
-			$this->RegisterVariableInteger('LPCurrent', $this->Translate('LP Current'), 'OWB.Ladeleistung', 0);
-			$this->EnableAction('LPCurrent');
 
+            $this->RegisterVariableInteger('LPCurrent', $this->Translate('LP Current'), 'OWB.Ladeleistung', 0);
+            $this->EnableAction('LPCurrent');
 
-			$this->RegisterVariableInteger('LPenergyToCharge', $this->Translate('LP Energy to Charge'), '~Intensity.100', 0);
-			$this->EnableAction('LPenergyToCharge');
-			$this->RegisterVariableInteger('LPChargeLimitation', $this->Translate('LP Charge Limitation'), 'OWB.ChargeLimitation', 0);
-			$this->EnableAction('LPChargeLimitation');
-			$this->RegisterVariableInteger('LPresetEnergyToCharge', $this->Translate('LP Reset Energy To Charge'), 'OWB.ResetDirectCharge', 0);
-			$this->EnableAction('LPresetEnergyToCharge');
-			$this->RegisterVariableInteger('LPsocToChargeTo', $this->Translate('LP SoC to charge to'), '~Intensity.100', 0);
-			$this->EnableAction('LPsocToChargeTo');
+            $this->RegisterVariableInteger('LPenergyToCharge', $this->Translate('LP Energy to Charge'), '~Intensity.100', 0);
+            $this->EnableAction('LPenergyToCharge');
+            $this->RegisterVariableInteger('LPChargeLimitation', $this->Translate('LP Charge Limitation'), 'OWB.ChargeLimitation', 0);
+            $this->EnableAction('LPChargeLimitation');
+            $this->RegisterVariableInteger('LPresetEnergyToCharge', $this->Translate('LP Reset Energy To Charge'), 'OWB.ResetDirectCharge', 0);
+            $this->EnableAction('LPresetEnergyToCharge');
+            $this->RegisterVariableInteger('LPsocToChargeTo', $this->Translate('LP SoC to charge to'), '~Intensity.100', 0);
+            $this->EnableAction('LPsocToChargeTo');
         }
 
         public function Destroy()
@@ -107,120 +106,120 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             $lp = $this->ReadPropertyInteger('lp');
             if (!empty($this->ReadPropertyString('topic'))) {
-                $this->SendDebug('ReceiveData :: JSON',$JSONString,0);
+                $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
-                switch ($data['Topic']) {	
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/%Soc':
-                        $this->SetValue('LPSoC' ,$$data['Payload']);
-                        break;  
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/AConfigured':
-                        $this->SetValue('LPAConfigured' ,$data['Payload']);
+                switch ($data['Topic']) {
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/%Soc':
+                        $this->SetValue('LPSoC', $$data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/Aphase1':
-                        $this->SetValue('LPAphase1' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/AConfigured':
+                        $this->SetValue('LPAConfigured', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/Aphase2':
-                        $this->SetValue('LPAphase2' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/Aphase1':
+                        $this->SetValue('LPAphase1', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/Aphase3':
-                        $this->SetValue('LPAphase3' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/Aphase2':
+                        $this->SetValue('LPAphase2', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/AutolockConfigured':
-                        $this->SetValue('LPAutolockConfigured' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/Aphase3':
+                        $this->SetValue('LPAphase3', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/AutolockStatus':
-                        $this->SetValue('LPAutolockStatus' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/AutolockConfigured':
+                        $this->SetValue('LPAutolockConfigured', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolChargeAtNight':
-                        $this->SetValue('LPboolChargeAtNight' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/AutolockStatus':
+                        $this->SetValue('LPAutolockStatus', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolChargePointConfigured':
-                        $this->SetValue('LPboolChargePointConfigured' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolChargeAtNight':
+                        $this->SetValue('LPboolChargeAtNight', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolChargeStat':
-                        $this->SetValue('LPboolChargeStat' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolChargePointConfigured':
+                        $this->SetValue('LPboolChargePointConfigured', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/'.$lp.'/chargeLimitation':
-							$this->SetValue('LPChargeLimitation' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolChargeStat':
+                        $this->SetValue('LPboolChargeStat', $data['Payload']);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/' . $lp . '/chargeLimitation':
+                            $this->SetValue('LPChargeLimitation', $data['Payload']);
 
-                        break;						
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolFinishAtTimeChargeActive':
-                        $this->SetValue('LPboolFinishAtTimeChargeActive' ,$data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolPlugStat':
-                        $this->SetValue('LPPlugStat' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolFinishAtTimeChargeActive':
+                        $this->SetValue('LPboolFinishAtTimeChargeActive', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolSocConfigured':
-                        $this->SetValue('LPboolSocConfigured' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolPlugStat':
+                        $this->SetValue('LPPlugStat', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/boolSocManual':
-                        $this->SetValue('LPboolSoCManual' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolSocConfigured':
+                        $this->SetValue('LPboolSocConfigured', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/ChargePointEnabled':
-                        $this->SetValue('LPChargePointEnabled' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolSocManual':
+                        $this->SetValue('LPboolSoCManual', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/ChargeStatus':
-                        $this->SetValue('LPChargeStatus' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/ChargePointEnabled':
+                        $this->SetValue('LPChargePointEnabled', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/countPhasesInUse':
-                        $this->SetValue('LPcountPhasesInUse' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/ChargeStatus':
+                        $this->SetValue('LPChargeStatus', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/enerygConsumptionPer100km':
-                        $this->SetValue('LPenergyConsumptionPer100km' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/countPhasesInUse':
+                        $this->SetValue('LPcountPhasesInUse', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/faultState':
-                        $this->SetValue('LPfaultState' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/enerygConsumptionPer100km':
+                        $this->SetValue('LPenergyConsumptionPer100km', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/kmCharged':
-                        $this->SetValue('LPkmCharged' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/faultState':
+                        $this->SetValue('LPfaultState', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/kWhActualCharged':
-                        $this->SetValue('LPkWhActualCharged' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/kmCharged':
+                        $this->SetValue('LPkmCharged', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/kWhChargedSincePlugged':
-                        $this->SetValue('LPkWhChargedSincePlugged' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/kWhActualCharged':
+                        $this->SetValue('LPkWhActualCharged', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/kWhCounter':
-                        $this->SetValue('LPkWhCounter' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/kWhChargedSincePlugged':
+                        $this->SetValue('LPkWhChargedSincePlugged', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/kWhDailyCharged':
-                        $this->SetValue('LPkWhDailyCharged' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/kWhCounter':
+                        $this->SetValue('LPkWhCounter', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/lastRfid':
-                        $this->SetValue('LPlastRfid' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/kWhDailyCharged':
+                        $this->SetValue('LPkWhDailyCharged', $data['Payload']);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/lastRfid':
+                        $this->SetValue('LPlastRfid', $data['Payload']);
                         break;
                     //pluggedladungakt
                     //plugStartkWh
                     //socFaultState
                     //socFaultStr
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/strChargePointName':
-                        $this->SetValue('LPstrChargePointName' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/strChargePointName':
+                        $this->SetValue('LPstrChargePointName', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/TimeRemaining':
-                        $this->SetValue('LPTimeRemaining' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/TimeRemaining':
+                        $this->SetValue('LPTimeRemaining', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/VPhase1':
-                        $this->SetValue('LPVPhase1' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/VPhase1':
+                        $this->SetValue('LPVPhase1', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/VPhase2':
-                        $this->SetValue('LPVPhase2' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/VPhase2':
+                        $this->SetValue('LPVPhase2', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/VPhase3':
-                        $this->SetValue('LPVPhase3' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/VPhase3':
+                        $this->SetValue('LPVPhase3', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/'.$lp.'/W':
-                        $this->SetValue('LPW' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/W':
+                        $this->SetValue('LPW', $data['Payload']);
                         break;
-					case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/'.$lp.'/current':
-						$this->SetValue('LPCurrent' ,$data['Payload']);
-						break;
-					case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/'.$lp.'/socToChargeTo':
-						$this->SetValue('LPsocToChargeTo' ,$data['Payload']);
-						break;			
-					case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/'.$lp.'/energyToCharge':
-						$this->SetValue('LPenergyToCharge' ,$data['Payload']);
-						break;						
-						
+                    case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/' . $lp . '/current':
+                        $this->SetValue('LPCurrent', $data['Payload']);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/' . $lp . '/socToChargeTo':
+                        $this->SetValue('LPsocToChargeTo', $data['Payload']);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/' . $lp . '/energyToCharge':
+                        $this->SetValue('LPenergyToCharge', $data['Payload']);
+                        break;
+
                 }
             }
         }
@@ -229,24 +228,24 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             $lp = $this->ReadPropertyInteger('lp');
             switch ($Ident) {
-				case 'LPChargePointEnabled':
-					$this->MQTTCommand('set/lp/'.$lp.'/ChargePointEnabled',intval($Value));
-					break;				
-				case 'LPCurrent':
-					$this->MQTTCommand('config/set/sofort/lp/'.$lp.'/current',intval($Value));
-					break;
-				case 'LPenergyToCharge':
-					$this->MQTTCommand('config/set/sofort/lp/'.$lp.'/energyToCharge',intval($Value));
-					break;
-				case 'LPChargeLimitation':
-					$this->MQTTCommand('config/set/sofort/lp/'.$lp.'/chargeLimitation',intval($Value));
-					break;
-				case 'LPresetEnergyToCharge':
-					$this->MQTTCommand('config/set/sofort/lp/'.$lp.'/resetEnergyToCharge',intval($Value));
-					break;
-				case 'LPsocToChargeTo':
-					$this->MQTTCommand('config/set/sofort/lp/'.$lp.'/socToChargeTo',intval($Value));
-					break;
+                case 'LPChargePointEnabled':
+                    $this->MQTTCommand('set/lp/' . $lp . '/ChargePointEnabled', intval($Value));
+                    break;
+                case 'LPCurrent':
+                    $this->MQTTCommand('config/set/sofort/lp/' . $lp . '/current', intval($Value));
+                    break;
+                case 'LPenergyToCharge':
+                    $this->MQTTCommand('config/set/sofort/lp/' . $lp . '/energyToCharge', intval($Value));
+                    break;
+                case 'LPChargeLimitation':
+                    $this->MQTTCommand('config/set/sofort/lp/' . $lp . '/chargeLimitation', intval($Value));
+                    break;
+                case 'LPresetEnergyToCharge':
+                    $this->MQTTCommand('config/set/sofort/lp/' . $lp . '/resetEnergyToCharge', intval($Value));
+                    break;
+                case 'LPsocToChargeTo':
+                    $this->MQTTCommand('config/set/sofort/lp/' . $lp . '/socToChargeTo', intval($Value));
+                    break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;
@@ -255,7 +254,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function MQTTCommand($Topic, $Payload, $retain = 0)
         {
-            $Topic = $this->ReadPropertyString('topic') .'/'. $Topic;
+            $Topic = $this->ReadPropertyString('topic') . '/' . $Topic;
             $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
             $Data['PacketType'] = 3;
             $Data['QualityOfService'] = 0;
@@ -270,7 +269,4 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 echo $last_error['message'];
             }
         }
-
-
-
     }
