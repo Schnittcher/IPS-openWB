@@ -77,7 +77,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableInteger('LPCurrent', $this->Translate('LP Current'), 'OWB.Ladeleistung', 0);
             $this->EnableAction('LPCurrent');
 
-            $this->RegisterVariableInteger('LPenergyToCharge', $this->Translate('LP Energy to Charge'), '~OWB.EnergyToCharge', 0);
+            $this->RegisterVariableInteger('LPenergyToCharge', $this->Translate('LP Energy to Charge'), 'OWB.EnergyToCharge', 0);
             $this->EnableAction('LPenergyToCharge');
             $this->RegisterVariableInteger('LPChargeLimitation', $this->Translate('LP Charge Limitation'), 'OWB.ChargeLimitation', 0);
             $this->EnableAction('LPChargeLimitation');
