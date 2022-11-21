@@ -28,12 +28,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', ' A', 6, 32, 1);
             $this->RegisterProfileInteger('OWB.Minuten', '', '', ' Minuten', 0, 0, 1);
+            $this->RegisterProfileInteger('OWB.EnergyToCharge', 'Electricity', '', ' kWh', 2, 100, 2);
+            
             $this->RegisterProfileFloat('OWB.KM', '', '', ' km', 0, 0, 1, 1);
             $this->RegisterProfileFloat('OWB.Wh', '', '', ' Wh', 0, 0, 0.1, 1);
 
             $this->RegisterVariableInteger('LPSoC', $this->Translate('LP SoC'), '~Intensity.100', 0);
             $this->RegisterVariableInteger('LPAConfigured', $this->Translate('LP Max charge current'), 'OWB.Ladeleistung', 0);
-            $this->RegisterVariableInteger('LPApahse1', $this->Translate('LP Phase 1'), 'OWB.Ladeleistung', 0);
+            $this->RegisterVariableInteger('LPAphase1', $this->Translate('LP Phase 1'), 'OWB.Ladeleistung', 0);
             $this->RegisterVariableInteger('LPAphase2', $this->Translate('LP Phase 2'), 'OWB.Ladeleistung', 0);
             $this->RegisterVariableInteger('LPAphase3', $this->Translate('LP Phase 3'), 'OWB.Ladeleistung', 0);
             //AutoLock?
@@ -66,16 +68,16 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             //socFaultState
             //socFaultStr
             $this->RegisterVariableString('LPstrChargePointName', $this->Translate('LP Name'), '', 0);
-            $this->RegisterVariableInteger('LPTimeRemaining', $this->Translate('LP Time Remaining'), '', 0);
+            $this->RegisterVariableString('LPTimeRemaining', $this->Translate('LP Time Remaining'), '', 0);
             $this->RegisterVariableFloat('LPVPhase1', $this->Translate('LP Phase 1 Voltage'), '~Volt', 0);
             $this->RegisterVariableFloat('LPVPhase2', $this->Translate('LP Phase 2 Voltage'), '~Volt', 0);
             $this->RegisterVariableFloat('LPVPhase3', $this->Translate('LP Phase 3 Voltage'), '~Volt', 0);
-            $this->RegisterVariableFloat('LPW', $this->Translate('LP Charging Power'), '~Electricity', 0);
+            $this->RegisterVariableFloat('LPW', $this->Translate('LP Charging Power'), '~Power', 0);
 
             $this->RegisterVariableInteger('LPCurrent', $this->Translate('LP Current'), 'OWB.Ladeleistung', 0);
             $this->EnableAction('LPCurrent');
 
-            $this->RegisterVariableInteger('LPenergyToCharge', $this->Translate('LP Energy to Charge'), '~Intensity.100', 0);
+            $this->RegisterVariableInteger('LPenergyToCharge', $this->Translate('LP Energy to Charge'), '~OWB.EnergyToCharge', 0);
             $this->EnableAction('LPenergyToCharge');
             $this->RegisterVariableInteger('LPChargeLimitation', $this->Translate('LP Charge Limitation'), 'OWB.ChargeLimitation', 0);
             $this->EnableAction('LPChargeLimitation');
@@ -115,13 +117,13 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/AConfigured':
                         $this->SetValue('LPAConfigured', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/Aphase1':
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/APhase1':
                         $this->SetValue('LPAphase1', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/Aphase2':
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/APhase2':
                         $this->SetValue('LPAphase2', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/Aphase3':
+                    case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/APhase3':
                         $this->SetValue('LPAphase3', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/AutolockConfigured':
@@ -208,7 +210,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('LPVPhase3', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/W':
-                        $this->SetValue('LPW', $data['Payload']);
+                        $this->SetValue('LPW', $data['Payload'] / 1000);
                         break;
                     case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/' . $lp . '/current':
                         $this->SetValue('LPCurrent', $data['Payload']);

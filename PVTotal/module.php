@@ -14,6 +14,11 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
             $this->RegisterPropertyString('topic', 'openWB');
 
+            $this->RegisterProfileIntegerEx('OWB.PriorityModeEVBattery', 'Power', '', '', [
+                [0, $this->translate('Storage'),  '', -1],
+                [1, $this->translate('Auto'),  '', -1]
+            ]);
+
             $this->RegisterVariableBoolean('boolPVConfigured', $this->Translate('PV Configured'), '~Switch', 0);
             $this->RegisterVariableFloat('DailyYieldKwh', $this->Translate('Daily Yield'), '~Electricity', 0);
             $this->RegisterVariableInteger('faultState', $this->Translate('Fault State'), '', 0);
@@ -22,6 +27,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('W', $this->Translate('Power'), '~Watt', 0);
             $this->RegisterVariableFloat('WhCounter', $this->Translate('Wh Counter'), '~Electricity.Wh', 0);
             $this->RegisterVariableFloat('YearlyYieldKwh', $this->Translate('Yearly Yield'), '~Electricity', 0);
+            $this->RegisterVariableInteger('priorityModeEVBattery', $this->Translate('Priority ModeEV Battery'), 'OWB.PriorityModeEVBattery', 0);
+            $this->EnableAction('priorityModeEVBattery');
         }
 
         public function Destroy()
@@ -71,6 +78,10 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     case $this->ReadPropertyString('topic') . '/pv/YearlyYieldKwh':
                         $this->SetValue('YearlyYieldKwh', $data['Payload']);
                         break;
+                    case $this->ReadPropertyString('topic') . '/pv/priorityModeEVBattery':
+                        $this->SetValue('priorityModeEVBattery', $data['Payload']);
+                        break;
+                        
                     default:
                         break;
                 }
@@ -80,6 +91,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         public function RequestAction($Ident, $Value)
         {
             switch ($Ident) {
+                case 'priorityModeEVBattery':
+
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;

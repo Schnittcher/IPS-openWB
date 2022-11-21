@@ -13,7 +13,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             parent::Create();
             $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
             $this->RegisterPropertyString('topic', 'openWB');
-
+            
             $this->RegisterVariableInteger('SoC', $this->Translate('SoC'), '~Intensity.100', 0);
             $this->RegisterVariableBoolean('boolHouseBatteryConfigured', $this->Translate('House Battery Configured'), '~Switch', 0);
             $this->RegisterVariableFloat('DailyYieldExportKwh', $this->Translate('Daily Yield Export'), '~Electricity', 0);
@@ -82,7 +82,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         break;
                     case $this->ReadPropertyString('topic') . '/housebattery/WhImported_temp':
                         $this->SetValue('WhImported_temp', $data['Payload']);
-                        break;
+                        break;                       
                     default:
                         break;
                 }
