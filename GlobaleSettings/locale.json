@@ -7,6 +7,7 @@
             "Stop": "Stop",
             "Standby": "Standby",
             "Charge Mode": "Lade Modus",
+            "Min Current PVMin": " Mindestladung PVMin",
             "Simulate RFID": "RFID simulieren"
         }
     }

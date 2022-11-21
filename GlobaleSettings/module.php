@@ -14,7 +14,6 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
             $this->RegisterPropertyString('topic', 'openWB');
 
-            
             $this->RegisterProfileIntegerEx('OWBMQTT.Lademodus', 'Power', '', '', [
                 [0, $this->translate('Immediately'),  '', -1],
                 [1, $this->translate('Min+PV'),  '', -1],
@@ -23,12 +22,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 [4, $this->translate('Standby'),  '', -1]
             ]);
 
+            $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', ' A', 6, 32, 1);
 
             $this->RegisterVariableInteger('GlobalChargeMode', $this->Translate('Charge Mode'), 'OWBMQTT.Lademodus', 0);
             $this->EnableAction('GlobalChargeMode');
+            $this->RegisterVariableInteger('minCurrentMinPV', $this->Translate('Min Current PVMin'), 'OWB.Ladeleistung', 0);
+            $this->EnableAction('minCurrentMinPV');
             $this->RegisterVariableString('SimulateRFID', $this->Translate('Simulate RFID'), '', 0);
             $this->EnableAction('SimulateRFID');
-            
         }
 
         public function Destroy()
@@ -51,14 +52,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         public function ReceiveData($JSONString)
         {
             if (!empty($this->ReadPropertyString('topic'))) {
-                $this->SendDebug('ReceiveData :: JSON',$JSONString,0);
+                $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
                     case $this->ReadPropertyString('topic') . '/global/ChargeMode':
-                        $this->SetValue('GlobalChargeMode' ,$data['Payload']);
-                        break;					
+                        $this->SetValue('GlobalChargeMode', $data['Payload']);
+                        break;
                     default:
-                        break;                        
+                        break;
                 }
             }
         }
@@ -67,10 +68,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             switch ($Ident) {
                 case 'GlobalChargeMode':
-                    $this->MQTTCommand('set/ChargeMode',$Value);
+                    $this->MQTTCommand('set/ChargeMode', $Value);
+                    break;
+                case 'minCurrentMinPV':
+                    $this->MQTTCommand('config/set/pv/minCurrentMinPV', $Value);
                     break;
                 case 'SimulateRFID':
-                    $this->MQTTCommand('set/system/SimulateRFID',$Value);
+                    $this->MQTTCommand('set/system/SimulateRFID', $Value);
+                    // FIXME: No break. Please add proper comment if intentional
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;
@@ -79,7 +84,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function MQTTCommand($Topic, $Payload, $retain = 0)
         {
-            $Topic = $this->ReadPropertyString('topic') .'/'. $Topic;
+            $Topic = $this->ReadPropertyString('topic') . '/' . $Topic;
             $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
             $Data['PacketType'] = 3;
             $Data['QualityOfService'] = 0;
@@ -94,7 +99,4 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 echo $last_error['message'];
             }
         }
-
-
-
     }

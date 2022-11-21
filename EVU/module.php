@@ -22,7 +22,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('DailyYieldImportKwh', $this->Translate('Daily Yield Import'), '~Electricity', 0);
             $this->RegisterVariableInteger('faultState', $this->Translate('Fault State'), '', 0);
             $this->RegisterVariableString('faultStr', $this->Translate('Fault State'), '', 0);
-            $this->RegisterVariableFloat('Hz', $this->Translate('Hz'), '~Hertz', 0);
+            $this->RegisterVariableFloat('Hz', $this->Translate('Frequency'), '~Hertz', 0);
             $this->RegisterVariableFloat('PfPhase1', $this->Translate('Pf Phase 1'), '', 0);
             $this->RegisterVariableFloat('PfPhase2', $this->Translate('Pf Phase 2'), '', 0);
             $this->RegisterVariableFloat('PfPhase3', $this->Translate('Pf Phase 3'), '', 0);
