@@ -32,7 +32,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->EnableAction('minCurrentMinPV');
             $this->RegisterVariableString('SimulateRFID', $this->Translate('Simulate RFID'), '', 0);
             $this->EnableAction('SimulateRFID');
-
+            $this->RegisterVariableFloat('WAllChargePoints', $this->Translate('Power all Charge Points'), '~Power', 0);
+            $this->RegisterVariableFloat('WHouseConsumption', $this->Translate('House Consumption'), '~Power', 0);
              
         }
 
@@ -68,6 +69,12 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     case $this->ReadPropertyString('topic') . '/config/get/pv/minCurrentMinPv':
                         $this->SetValue('minCurrentMinPv', $data['Payload']);
                         break;
+                    case $this->ReadPropertyString('topic') . '/global/WAllChargePoints':
+                        $this->SetValue('WAllChargePoints', $data['Payload'] / 1000);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/global/WHouseConsumption':
+                        $this->SetValue('WHouseConsumption', $data['Payload'] / 1000);
+                        break;                       
                     default:
                         break;
                 }

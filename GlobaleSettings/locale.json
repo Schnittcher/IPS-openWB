@@ -8,7 +8,9 @@
             "Standby": "Standby",
             "Charge Mode": "Lade Modus",
             "Min Current PVMin": " Mindestladung PVMin",
-            "Simulate RFID": "RFID simulieren"
+            "Simulate RFID": "RFID simulieren",
+            "Power all Charge Points": "Leistung aller Ladepunkte",
+            "House Consumption": "Verbrauch Haushalt"
         }
     }
 }
