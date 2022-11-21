@@ -47,47 +47,47 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         public function ReceiveData($JSONString)
         {
             if (!empty($this->ReadPropertyString('topic'))) {
-                $this->SendDebug('ReceiveData :: JSON',$JSONString,0);
+                $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
-                    case $this->ReadPropertyString('topic') .'/housebattery/%SoC':
-                        $this->SetValue('SoC' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/%SoC':
+                        $this->SetValue('SoC', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/boolHouseBatteryConfigured':
-                        $this->SetValue('boolHouseBatteryConfigured' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/boolHouseBatteryConfigured':
+                        $this->SetValue('boolHouseBatteryConfigured', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/DailyYieldExportKwh':
-                        $this->SetValue('DailyYieldExportKwh' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/DailyYieldExportKwh':
+                        $this->SetValue('DailyYieldExportKwh', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/DailyYieldImportKwh':
-                        $this->SetValue('DailyYieldImportKwh' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/DailyYieldImportKwh':
+                        $this->SetValue('DailyYieldImportKwh', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/faultState':
-                        $this->SetValue('faultState' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/faultState':
+                        $this->SetValue('faultState', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/faultStr':
-                        $this->SetValue('faultStr' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/faultStr':
+                        $this->SetValue('faultStr', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/W':
-                        $this->SetValue('W' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/W':
+                        $this->SetValue('W', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/WhExported':
-                        $this->SetValue('WhExported' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/WhExported':
+                        $this->SetValue('WhExported', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/WhExported_temp':
-                        $this->SetValue('WhExported_temp' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/WhExported_temp':
+                        $this->SetValue('WhExported_temp', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/WhImported':
-                        $this->SetValue('WhImported' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/WhImported':
+                        $this->SetValue('WhImported', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') .'/housebattery/WhImported_temp':
-                        $this->SetValue('WhImported_temp' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/housebattery/WhImported_temp':
+                        $this->SetValue('WhImported_temp', $data['Payload']);
                         break;
                     default:
-                        break;                        
+                        break;
                 }
             }
-        }      
+        }
 
         public function RequestAction($Ident, $Value)
         {
@@ -100,7 +100,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function MQTTCommand($Topic, $Payload, $retain = 0)
         {
-            $Topic = $this->ReadPropertyString('topic') .'/'. $Topic;
+            $Topic = $this->ReadPropertyString('topic') . '/' . $Topic;
             $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
             $Data['PacketType'] = 3;
             $Data['QualityOfService'] = 0;
@@ -115,7 +115,4 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 echo $last_error['message'];
             }
         }
-
-
-
     }

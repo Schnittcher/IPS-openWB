@@ -14,7 +14,6 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
             $this->RegisterPropertyString('topic', 'openWB');
 
-
             $this->RegisterVariableBoolean('boolPVConfigured', $this->Translate('PV Configured'), '~Switch', 0);
             $this->RegisterVariableFloat('DailyYieldKwh', $this->Translate('Daily Yield'), '~Electricity', 0);
             $this->RegisterVariableInteger('faultState', $this->Translate('Fault State'), '', 0);
@@ -22,7 +21,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('MonthlyYieldKwh', $this->Translate('Monthly Yield'), '~Electricity', 0);
             $this->RegisterVariableFloat('W', $this->Translate('Power'), '~Watt', 0);
             $this->RegisterVariableFloat('WhCounter', $this->Translate('Wh Counter'), '~Electricity.Wh', 0);
-            $this->RegisterVariableFloat('YearlyYieldKwh', $this->Translate('Yearly Yield'), '~Electricity', 0);           
+            $this->RegisterVariableFloat('YearlyYieldKwh', $this->Translate('Yearly Yield'), '~Electricity', 0);
         }
 
         public function Destroy()
@@ -45,38 +44,38 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         public function ReceiveData($JSONString)
         {
             if (!empty($this->ReadPropertyString('topic'))) {
-                $this->SendDebug('ReceiveData :: JSON',$JSONString,0);
+                $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
                     case $this->ReadPropertyString('topic') . '/pv/boolPVConfigured':
-                        $this->SetValue('boolPVConfigured' ,$data['Payload']);
+                        $this->SetValue('boolPVConfigured', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/DailyYieldKwh':
-                        $this->SetValue('DailyYieldKwh' ,$data['Payload']);
+                        $this->SetValue('DailyYieldKwh', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/faultState':
-                        $this->SetValue('faultState' ,$data['Payload']);
+                        $this->SetValue('faultState', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/faultStr':
-                        $this->SetValue('faultStr' ,$data['Payload']);
+                        $this->SetValue('faultStr', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/MonthlyYieldKwh':
-                        $this->SetValue('MonthlyYieldKwh' ,$data['Payload']);
+                        $this->SetValue('MonthlyYieldKwh', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/W':
-                        $this->SetValue('W' ,$data['Payload']);
+                        $this->SetValue('W', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/WhCounter':
-                        $this->SetValue('WhCounter' ,$data['Payload']);
+                        $this->SetValue('WhCounter', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/pv/YearlyYieldKwh':
-                        $this->SetValue('YearlyYieldKwh' ,$data['Payload']);
+                        $this->SetValue('YearlyYieldKwh', $data['Payload']);
                         break;
                     default:
-                        break;                        
+                        break;
                 }
             }
-        }      
+        }
 
         public function RequestAction($Ident, $Value)
         {
@@ -89,7 +88,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function MQTTCommand($Topic, $Payload, $retain = 0)
         {
-            $Topic = $this->ReadPropertyString('topic') .'/'. $Topic;
+            $Topic = $this->ReadPropertyString('topic') . '/' . $Topic;
             $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
             $Data['PacketType'] = 3;
             $Data['QualityOfService'] = 0;
@@ -104,7 +103,4 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 echo $last_error['message'];
             }
         }
-
-
-
     }

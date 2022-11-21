@@ -17,7 +17,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableInteger('Apahse1', $this->Translate('Phase 1'), '', 0);
             $this->RegisterVariableInteger('Aphase2', $this->Translate('Phase 2'), '', 0);
             $this->RegisterVariableInteger('Aphase3', $this->Translate('Phase 3'), '', 0);
-            $this->RegisterVariableInteger('ASchieflast', $this->Translate('A Schieflast'), '', 0);           
+            $this->RegisterVariableInteger('ASchieflast', $this->Translate('A Schieflast'), '', 0);
             $this->RegisterVariableFloat('DailyYieldExportKwh', $this->Translate('Daily Yield Export'), '~Electricity', 0);
             $this->RegisterVariableFloat('DailyYieldImportKwh', $this->Translate('Daily Yield Import'), '~Electricity', 0);
             $this->RegisterVariableInteger('faultState', $this->Translate('Fault State'), '', 0);
@@ -33,7 +33,6 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('WPhase1', $this->Translate('Power Phase 1'), '~Watt', 0);
             $this->RegisterVariableFloat('WPhase2', $this->Translate('Power Phase 2'), '~Watt', 0);
             $this->RegisterVariableFloat('WPhase3', $this->Translate('Power Phase 3'), '~Watt', 0);
-
         }
 
         public function Destroy()
@@ -56,71 +55,71 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         public function ReceiveData($JSONString)
         {
             if (!empty($this->ReadPropertyString('topic'))) {
-                $this->SendDebug('ReceiveData :: JSON',$JSONString,0);
+                $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
                     case $this->ReadPropertyString('topic') . '/evu/Apahse1':
-                        $this->SetValue('Apahse1' ,$data['Payload']);
+                        $this->SetValue('Apahse1', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/Apahse2':
-                        $this->SetValue('Apahse2' ,$data['Payload']);
+                        $this->SetValue('Apahse2', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/Apahse3':
-                        $this->SetValue('Apahse3' ,$data['Payload']);
+                        $this->SetValue('Apahse3', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/ASchieflast':
-                        $this->SetValue('ASchieflast' ,$data['Payload']);
+                        $this->SetValue('ASchieflast', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/DailyYieldExportKwh':
-                        $this->SetValue('DailyYieldExportKwh' ,$data['Payload']);
+                        $this->SetValue('DailyYieldExportKwh', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/DailyYieldImportKwh':
-                        $this->SetValue('DailyYieldImportKwh' ,$data['Payload']);
+                        $this->SetValue('DailyYieldImportKwh', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/faultState':
-                        $this->SetValue('faultState' ,$data['Payload']);
+                        $this->SetValue('faultState', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/faultStr':
-                        $this->SetValue('faultStr' ,$data['Payload']);
+                        $this->SetValue('faultStr', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/Hz':
-                        $this->SetValue('Hz' ,$data['Payload']);
+                        $this->SetValue('Hz', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/PfPhase1':
-                        $this->SetValue('PfPhase1' ,$data['Payload']);
+                        $this->SetValue('PfPhase1', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/PfPhase2':
-                        $this->SetValue('PfPhase2' ,$data['Payload']);
+                        $this->SetValue('PfPhase2', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/PfPhase3':
-                        $this->SetValue('PfPhase3' ,$data['Payload']);
+                        $this->SetValue('PfPhase3', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/W':
-                        $this->SetValue('W' ,$data['Payload']);
+                        $this->SetValue('W', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WhExported':
-                        $this->SetValue('WhExported' ,$data['Payload']);
+                        $this->SetValue('WhExported', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WhImported':
-                        $this->SetValue('WhImported' ,$data['Payload']);
+                        $this->SetValue('WhImported', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WhImported_temp':
-                        $this->SetValue('WhImported_temp' ,$data['Payload']);
+                        $this->SetValue('WhImported_temp', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WPhase1':
-                        $this->SetValue('WPhase1' ,$data['Payload']);
+                        $this->SetValue('WPhase1', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WPhase2':
-                        $this->SetValue('WPhase2' ,$data['Payload']);
+                        $this->SetValue('WPhase2', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WPhase3':
-                        $this->SetValue('WPhase3' ,$data['Payload']);
+                        $this->SetValue('WPhase3', $data['Payload']);
                         break;
                     default:
-                        break;                        
+                        break;
                 }
             }
-        }      
+        }
 
         public function RequestAction($Ident, $Value)
         {
@@ -133,7 +132,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function MQTTCommand($Topic, $Payload, $retain = 0)
         {
-            $Topic = $this->ReadPropertyString('topic') .'/'. $Topic;
+            $Topic = $this->ReadPropertyString('topic') . '/' . $Topic;
             $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
             $Data['PacketType'] = 3;
             $Data['QualityOfService'] = 0;
@@ -148,7 +147,4 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 echo $last_error['message'];
             }
         }
-
-
-
     }

@@ -24,7 +24,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('WhCounter', $this->Translate('Wh Counter'), '~Electricity.Wh', 0);
             $this->RegisterVariableFloat('WHExport_temp', $this->Translate('Wh Export temp'), '', 0);
             $this->RegisterVariableFloat('WHImported_temp', $this->Translate('Wh Imported temp'), '', 0);
-            $this->RegisterVariableFloat('YearlyYieldKwh', $this->Translate('Yearly Yield'), '~Electricity', 0);           
+            $this->RegisterVariableFloat('YearlyYieldKwh', $this->Translate('Yearly Yield'), '~Electricity', 0);
         }
 
         public function Destroy()
@@ -48,47 +48,47 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             $pv = $this->ReadPropertyInteger('pv');
             if (!empty($this->ReadPropertyString('topic'))) {
-                $this->SendDebug('ReceiveData :: JSON',$JSONString,0);
+                $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/'.$pv.'/bool70PVDynActive':
-                        $this->SetValue('bool70PVDynActive' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/' . $pv . '/bool70PVDynActive':
+                        $this->SetValue('bool70PVDynActive', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/bool70PVDynStatus':
-                        $this->SetValue('bool70PVDynStatus' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/bool70PVDynStatus':
+                        $this->SetValue('bool70PVDynStatus', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/CounterTillStartPvCharging':
-                        $this->SetValue('CounterTillStartPvCharging' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/CounterTillStartPvCharging':
+                        $this->SetValue('CounterTillStartPvCharging', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/DailyYieldKwh':
-                        $this->SetValue('DailyYieldKwh' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/DailyYieldKwh':
+                        $this->SetValue('DailyYieldKwh', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/MonthlyYieldKwh':
-                        $this->SetValue('MonthlyYieldKwh' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/MonthlyYieldKwh':
+                        $this->SetValue('MonthlyYieldKwh', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/W':
-                        $this->SetValue('W' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/W':
+                        $this->SetValue('W', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/W70PVDyn':
-                        $this->SetValue('W70PVDyn' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/W70PVDyn':
+                        $this->SetValue('W70PVDyn', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/WhCounter':
-                        $this->SetValue('WhCounter' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/WhCounter':
+                        $this->SetValue('WhCounter', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/WHExport_temp':
-                        $this->SetValue('WHExport_temp' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/WHExport_temp':
+                        $this->SetValue('WHExport_temp', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/WHImported_temp':
-                        $this->SetValue('WHImported_temp' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/WHImported_temp':
+                        $this->SetValue('WHImported_temp', $data['Payload']);
                         break;
-                    case $this->ReadPropertyString('topic') . '/pv/'.$pv.'/YearlyYieldKwh':
-                        $this->SetValue('YearlyYieldKwh' ,$data['Payload']);
+                    case $this->ReadPropertyString('topic') . '/pv/' . $pv . '/YearlyYieldKwh':
+                        $this->SetValue('YearlyYieldKwh', $data['Payload']);
                         break;
                     default:
-                        break;                        
+                        break;
                 }
             }
-        }    
+        }
         public function RequestAction($Ident, $Value)
         {
             switch ($Ident) {
@@ -100,7 +100,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function MQTTCommand($Topic, $Payload, $retain = 0)
         {
-            $Topic = $this->ReadPropertyString('topic') .'/'. $Topic;
+            $Topic = $this->ReadPropertyString('topic') . '/' . $Topic;
             $Data['DataID'] = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
             $Data['PacketType'] = 3;
             $Data['QualityOfService'] = 0;
@@ -115,7 +115,4 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 echo $last_error['message'];
             }
         }
-
-
-
     }
