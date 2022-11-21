@@ -1,0 +1,17 @@
+{
+    "translations": {
+        "de": {
+            "PV 70 Dyn Active": "PV 70 Dyn Aktiv",
+            "PV 70 Dyn Status": "PV 70 Dyn Status",
+            "Counter Till Start Pv Charging": "Counter bis zum Start von PV Laden",
+            "Daily Yield": "Täglicher Ertrag",
+            "Monthly Yield": "Monatlicher Ertrag",
+            "Power": "Leistung",
+            "W 70 PV Dyn": "W 70 PV Dyn",
+            "Wh Counter": "Wh Zähler",
+            "Wh Export temp": "Wh Export temp",
+            "Wh Imported temp": "Wh importierte temp",
+            "Yearly Yield": "Jährlicher Ertrag"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "translations": {
+        "de": {
+            "Immediately": "Sofort",
+            "Min+PV": "Min+PV",
+            "Only PV": "Nur PV",
+            "Stop": "Stop",
+            "Standby": "Standby",
+            "Charge Mode": "Lade Modus",
+            "Simulate RFID": "RFID simulieren"
+        }
+    }
+}

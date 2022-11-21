@@ -1,0 +1,15 @@
+{
+  "elements": [
+    {
+      "name": "topic",
+      "type": "ValidationTextBox",
+      "caption": "MQTT Topic"
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "lp",
+      "caption": "Charging Point"
+    }
+  ],
+  "actions": []
+}

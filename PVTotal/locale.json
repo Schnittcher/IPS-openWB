@@ -1,0 +1,13 @@
+{
+    "translations": {
+        "de": {
+            "PV Configured": "PV Konfiguriert",
+            "Daily Yield": "Täglicher Ertrag",
+            "Fault State": "Störungszustand",
+            "Monthly Yield": "Monatlicher Ertrag",
+            "Power": "Leistung",
+            "Wh Counter": "Wh Zähler",
+            "Yearly Yield": "Jährlicher Ertrag"
+        }
+    }
+}

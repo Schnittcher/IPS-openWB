@@ -1,0 +1,16 @@
+{
+    "id": "{4D32E84C-8B1E-46AC-BDBE-32CDAC46DE2B}",
+    "name": "HouseBattery",
+    "type": 3,
+    "vendor": "openWB",
+    "aliases": [],
+    "parentRequirements": [
+        "{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}"
+    ],
+    "prefix": "OPENWB",
+    "url": "https://deinsmarthome.info"
+}

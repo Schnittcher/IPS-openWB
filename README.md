@@ -20,17 +20,26 @@
 
 ## 2. Enthaltene Module
 
-* openWB
+* HTTP API
+  * openWB
+* MQTT API
+  * ChargingPoint
+  * EVU
+  * GloableSettings 
+  * HouseBattery
+  * PVString
+  * PVTotal
 
 ## 3. Installation
 Über den IP-Symcon Module Store.
+Die MQTT Variante ist zur Zeit noch als Beta Version im Store verfügbar.
 
 ## 4. Konfiguration in IP-Symcon
 Bitte den einzelnen Modulen entnehmen oder die [Dokumentation](https://deinsmarthome.info) aufrufen.
 
 ## 5. Spenden
 
-Dieses Modul ist für die nicht kommzerielle Nutzung kostenlos, Schenkungen als Unterstützung für den Autor werden hier akzeptiert:    
+Dieses Modul ist für die nicht kommerzielle Nutzung kostenlos, Schenkungen als Unterstützung für den Autor werden hier akzeptiert:    
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EK4JRP87XLSHW" target="_blank"><img src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donate_LG.gif" border="0" /></a>
 

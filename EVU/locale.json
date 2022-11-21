@@ -1,0 +1,24 @@
+{
+    "translations": {
+        "de": {
+            "Phase 1": "Phase 1",
+            "Phase 2": "Phase 2",
+            "Phase 3": "Phase 3",
+            "Schieflast": "Schieflast",
+            "Daily Yield Export": "Täglicher Ertragsexport",
+            "Daily Yield Import": "Täglicher Ertragsimport",
+            "Fault State": "Störungszustand",
+            "Frequency": "Netzfrequenz",
+            "Pf Phase 1": "Pf Phase 1",
+            "Pf Phase 2": "Pf Phase 2",
+            "Pf Phase 3": "Pf Phase 3",
+            "Power": "Leistung",
+            "Wh Exported": "Wh exportiert",
+            "Wh Imported": "Wh importiert",
+            "Wh Imported Temp": "Wh Importierte Temp.",
+            "Power Phase 1": "Leistung Phase 1",
+            "Power Phase 2": "Leistung Phase 2",
+            "Power Phase 3": "Leistung Phase 3"
+        }
+    }
+}
