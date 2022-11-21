@@ -26,7 +26,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
             $this->RegisterVariableInteger('GlobalChargeMode', $this->Translate('Charge Mode'), 'OWBMQTT.Lademodus', 0);
             $this->EnableAction('GlobalChargeMode');
-            $this->RegisterVariableInteger('minEVSECurrentAllowed', $this->Translate('Min EVSE Current Allowed'), 'OWBMQTT.Lademodus', 0);
+            $this->RegisterVariableInteger('minEVSECurrentAllowed', $this->Translate('Min EVSE Current Allowed'), 'OWB.Ladeleistung', 0);
             $this->EnableAction('minEVSECurrentAllowed');
             $this->RegisterVariableInteger('minCurrentMinPV', $this->Translate('Min Current PVMin'), 'OWB.Ladeleistung', 0);
             $this->EnableAction('minCurrentMinPV');
