@@ -14,9 +14,11 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->ConnectParent('{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}');
             $this->RegisterPropertyString('topic', 'openWB');
 
-            $this->RegisterVariableFloat('APhase1', $this->Translate('Phase 1'), '', 0);
-            $this->RegisterVariableFloat('APhase2', $this->Translate('Phase 2'), '', 0);
-            $this->RegisterVariableFloat('APhase3', $this->Translate('Phase 3'), '', 0);
+            $this->RegisterProfileFloat('OWB.FloatAmpere', 'Electricity', '', ' A', 6, 32, 2);
+            
+            $this->RegisterVariableFloat('APhase1', $this->Translate('Phase 1'), 'OWB.FloatAmpere', 0);
+            $this->RegisterVariableFloat('APhase2', $this->Translate('Phase 2'), 'OWB.FloatAmpere', 0);
+            $this->RegisterVariableFloat('APhase3', $this->Translate('Phase 3'), 'OWB.FloatAmpere', 0);
             $this->RegisterVariableInteger('ASchieflast', $this->Translate('A Schieflast'), '', 0);
             $this->RegisterVariableFloat('DailyYieldExportKwh', $this->Translate('Daily Yield Export'), '~Electricity', 0);
             $this->RegisterVariableFloat('DailyYieldImportKwh', $this->Translate('Daily Yield Import'), '~Electricity', 0);
