@@ -34,7 +34,6 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->EnableAction('SimulateRFID');
             $this->RegisterVariableFloat('WAllChargePoints', $this->Translate('Power all Charge Points'), '~Power', 0);
             $this->RegisterVariableFloat('WHouseConsumption', $this->Translate('House Consumption'), '~Power', 0);
-             
         }
 
         public function Destroy()
@@ -67,14 +66,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('minEVSECurrentAllowed', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/config/get/pv/minCurrentMinPv':
-                        $this->SetValue('minCurrentMinPv', intval($data['Payload']));
+                        $this->SetValue('minCurrentMinPV', intval($data['Payload']));
                         break;
                     case $this->ReadPropertyString('topic') . '/global/WAllChargePoints':
                         $this->SetValue('WAllChargePoints', $data['Payload'] / 1000);
                         break;
                     case $this->ReadPropertyString('topic') . '/global/WHouseConsumption':
                         $this->SetValue('WHouseConsumption', $data['Payload'] / 1000);
-                        break;                       
+                        break;
                     default:
                         break;
                 }
@@ -89,7 +88,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     break;
                 case 'minEVSECurrentAllowed':
                     $this->MQTTCommand('config/set/global/minEVSECurrentAllowed', $Value);
-                    break;                    
+                    break;
                 case 'minCurrentMinPV':
                     $this->MQTTCommand('config/set/pv/minCurrentMinPv', $Value);
                     break;
@@ -99,7 +98,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 case 'priorityModeEVBattery':
                     $this->MQTTCommand('config/set/pv/priorityModeEVBattery', $Value);
                     break;
-                    
+
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;
