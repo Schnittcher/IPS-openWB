@@ -112,7 +112,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/%Soc':
-                        $this->SetValue('LPSoC', $data['Payload']);
+                        $this->SetValue('LPSoC', intval($data['Payload']));
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/AConfigured':
                         $this->SetValue('LPAConfigured', $data['Payload']);

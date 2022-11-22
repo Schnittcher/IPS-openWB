@@ -51,7 +51,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 $data = json_decode($JSONString, true);
                 switch ($data['Topic']) {
                     case $this->ReadPropertyString('topic') . '/housebattery/%SoC':
-                        $this->SetValue('SoC', $data['Payload']);
+                        $this->SetValue('SoC', intval($data['Payload']));
                         break;
                     case $this->ReadPropertyString('topic') . '/housebattery/boolHouseBatteryConfigured':
                         $this->SetValue('boolHouseBatteryConfigured', $data['Payload']);
