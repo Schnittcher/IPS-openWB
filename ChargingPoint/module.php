@@ -153,7 +153,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                             case 0:
                                 $this->SetValue('LPPlugStat', false);
                                     break;
-                            case 0:
+                            case 1:
                                 $this->SetValue('LPPlugStat', true);
                                     break;
                             default:
