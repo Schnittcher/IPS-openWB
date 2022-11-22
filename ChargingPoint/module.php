@@ -149,7 +149,18 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('LPboolFinishAtTimeChargeActive', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolPlugStat':
-                        $this->SetValue('LPPlugStat', $data['Payload']);
+                        switch ($data['Payload']) {
+                            case 0:
+                                $this->SetValue('LPPlugStat', false);
+                                    break;
+                            case 0:
+                                $this->SetValue('LPPlugStat', true);
+                                    break;
+                            default:
+                                # code...
+                                break;
+                        }
+                        
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolSocConfigured':
                         $this->SetValue('LPboolSocConfigured', $data['Payload']);
