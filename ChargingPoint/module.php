@@ -29,7 +29,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', ' A', 6, 32, 1);
             $this->RegisterProfileInteger('OWB.Minuten', '', '', ' Minuten', 0, 0, 1);
             $this->RegisterProfileInteger('OWB.EnergyToCharge', 'Electricity', '', ' kWh', 2, 100, 2);
-            
+
             $this->RegisterProfileFloat('OWB.KM', '', '', ' km', 0, 0, 1, 1);
             $this->RegisterProfileFloat('OWB.Wh', '', '', ' Wh', 0, 0, 0.1, 1);
 
@@ -149,7 +149,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('LPboolFinishAtTimeChargeActive', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolPlugStat':
-                        switch ($data['Payload']) {
+                        switch (intval($data['Payload'])) {
                             case 0:
                                 $this->SetValue('LPPlugStat', false);
                                     break;
@@ -160,7 +160,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                                 # code...
                                 break;
                         }
-                        
+
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolSocConfigured':
                         $this->SetValue('LPboolSocConfigured', $data['Payload']);
