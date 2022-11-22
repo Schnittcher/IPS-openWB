@@ -67,7 +67,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('minEVSECurrentAllowed', $data['Payload']);
                         break;
                     case $this->ReadPropertyString('topic') . '/config/get/pv/minCurrentMinPv':
-                        $this->SetValue('minCurrentMinPv', $data['Payload']);
+                        $this->SetValue('minCurrentMinPv', intval($data['Payload']));
                         break;
                     case $this->ReadPropertyString('topic') . '/global/WAllChargePoints':
                         $this->SetValue('WAllChargePoints', $data['Payload'] / 1000);
