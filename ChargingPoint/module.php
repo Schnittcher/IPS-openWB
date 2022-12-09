@@ -33,6 +33,25 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterProfileFloat('OWB.KM', '', '', ' km', 0, 0, 1, 1);
             $this->RegisterProfileFloat('OWB.Wh', '', '', ' Wh', 0, 0, 0.1, 1);
 
+            $this->RegisterProfileBooleanEx('OWB.CarPlugged', 'Car', '', '', [
+                [false, $this->Translate('Free'),  '', 0xFF0000],
+                [true, $this->Translate('Plugged'),  '', 0x00FF00]
+            ]);
+            $this->RegisterProfileBooleanEx('OWB.ChargeState', 'Car', '', '', [
+                [false, $this->Translate('Off'),  '', 0xFF0000],
+                [true, $this->Translate('Charge'),  '', 0x00FF00]
+            ]);
+            $this->RegisterProfileBooleanEx('OWB.ChargePointEnabled', 'Car', '', '', [
+                [false, $this->Translate('Locked'),  '', 0xFF0000],
+                [true, $this->Translate('Open'),  '', 0xFF0000]
+            ]);
+
+            $this->RegisterProfileStringEx('OWB.LPState', 'Information', '', '', [
+                ['free', $this->Translate('Free'), '', 0x00FF00],
+                ['blocked', $this->Translate('Blocked'), '', 0xFFFF00],
+                ['charge', $this->Translate('Charge'), '', 0xFF0000],
+            ]);
+
             $this->RegisterVariableInteger('LPSoC', $this->Translate('LP SoC'), '~Intensity.100', 0);
             $this->RegisterVariableInteger('LPAConfigured', $this->Translate('LP Max charge current'), 'OWB.Ladeleistung', 0);
             $this->RegisterVariableInteger('LPAphase1', $this->Translate('LP Phase 1'), 'OWB.Ladeleistung', 0);
@@ -44,9 +63,9 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
             $this->RegisterVariableBoolean('LPboolChargeAtNight', $this->Translate('LP Charge at night'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPboolChargePointConfigured', $this->Translate('LP Configured'), '~Switch', 0);
-            $this->RegisterVariableBoolean('LPboolChargeStat', $this->Translate('LP Charge State'), '~Switch', 0);
+            $this->RegisterVariableBoolean('LPboolChargeStat', $this->Translate('LP Charge State'), 'OWB.ChargeState', 0);
             $this->RegisterVariableBoolean('LPboolFinishAtTimeChargeActive', $this->Translate('LP Finish at time charge'), '~Switch', 0);
-            $this->RegisterVariableBoolean('LPPlugStat', $this->Translate('LP Car plugged'), '~Switch', 0);
+            $this->RegisterVariableBoolean('LPPlugStat', $this->Translate('LP Car plugged'), 'OWB.CarPlugged', 0);
             $this->RegisterVariableBoolean('LPboolSocConfigured', $this->Translate('LP SoC configured'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPboolSoCManual', $this->Translate('LP SOC manual'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPChargePointEnabled', $this->Translate('LP ChargePoint Enabled'), '~Switch', 0);
@@ -54,7 +73,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableBoolean('LPChargeStatus', $this->Translate('LP Charge Status'), '~Switch', 0);
             $this->RegisterVariableInteger('LPcountPhasesInUse', $this->Translate('LP Phases in use'), '', 0);
 
-            $this->RegisterVariableInteger('LPenergyConsumptionPer100km', $this->Translate('LP Energy Consumption per 100km'), '', 0);
+            $this->RegisterVariableInteger('LPenergyConsumptionPer100km', $this->Translate('LP Energy Consumption per 100km'), '~Electricity', 0);
             $this->RegisterVariableInteger('LPfaultState', $this->Translate('LP fault State'), '', 0);
             $this->RegisterVariableFloat('LPkmCharged', $this->Translate('LP km charged'), 'OWB.KM', 0);
             $this->RegisterVariableFloat('LPkWhActualCharged', $this->Translate('LP Actual Charged'), '~Electricity', 0);
@@ -85,6 +104,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->EnableAction('LPresetEnergyToCharge');
             $this->RegisterVariableInteger('LPsocToChargeTo', $this->Translate('LP SoC to charge to'), '~Intensity.100', 0);
             $this->EnableAction('LPsocToChargeTo');
+            $this->RegisterVariableString('LPState', $this->Translate('LP State'), 'OWB.LPState', 0);
         }
 
         public function Destroy()
@@ -140,6 +160,15 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         break;
                     case $this->ReadPropertyString('topic') . '/lp/' . $lp . '/boolChargeStat':
                         $this->SetValue('LPboolChargeStat', $data['Payload']);
+                        if (!$data['Payload']) {
+                            if ($this->GetValue('LPPlugStat')) {
+                                $this->SetValue('LPState', 'blocked');
+                            }
+                        } else {
+                            if ($this->GetValue('LPPlugStat')) {
+                                $this->SetValue('LPState', 'charge');
+                            }
+                        }
                         break;
                     case $this->ReadPropertyString('topic') . '/config/get/sofort/lp/' . $lp . '/chargeLimitation':
                             $this->SetValue('LPChargeLimitation', $data['Payload']);
@@ -152,7 +181,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         switch (intval($data['Payload'])) {
                             case 0:
                                 $this->SetValue('LPPlugStat', false);
-                                    break;
+                                $this->SetValue('LPState', 'free');
+                                break;
                             case 1:
                                 $this->SetValue('LPPlugStat', true);
                                     break;

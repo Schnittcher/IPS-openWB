@@ -38,7 +38,15 @@
             "off": "Aus",
             "kWh charge": "kWh laden",
             "SoC charge": "SoC laden",
-            "Reset": "Reset"
+            "Reset": "Reset",
+            "Free": "Frei",
+            "Plugged": "Belegt",
+            "Off": "Aus",
+            "Charge": "Ladung",
+            "Open": "Freigegeben",
+            "Locked": "Gesperrt",
+            "Blocked": "Blockiert",
+            "LP State": "LP Status"
         }
     }
 }
