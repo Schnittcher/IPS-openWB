@@ -64,7 +64,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableBoolean('LPboolChargeAtNight', $this->Translate('LP Charge at night'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPboolChargePointConfigured', $this->Translate('LP Configured'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPboolChargeStat', $this->Translate('LP Charge State'), 'OWB.ChargeState', 0);
-            $this->RegisterVariableBoolean('LPboolFinishAtTimeChargeActive', $this->Translate('LP Finish at time charge'), '~Switch', 0);
+            $this->RegisterVariableString('LPboolFinishAtTimeChargeActive', $this->Translate('LP Finish at time charge'), '', 0);
             $this->RegisterVariableBoolean('LPPlugStat', $this->Translate('LP Car plugged'), 'OWB.CarPlugged', 0);
             $this->RegisterVariableBoolean('LPboolSocConfigured', $this->Translate('LP SoC configured'), '~Switch', 0);
             $this->RegisterVariableBoolean('LPboolSoCManual', $this->Translate('LP SOC manual'), '~Switch', 0);
