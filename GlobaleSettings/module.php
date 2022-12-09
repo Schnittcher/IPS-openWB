@@ -35,7 +35,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('WAllChargePoints', $this->Translate('Power all Charge Points'), '~Power', 0);
             $this->RegisterVariableFloat('kWAllChargePoints', $this->Translate('Power all Charge Points in kW'), '~Power', 0);
             $this->RegisterVariableFloat('WHouseConsumption', $this->Translate('House Consumption'), '~Power', 0);
-            $this->RegisterVariableFloat('kWhCounterAllChargePoints ', $this->Translate('Counter All ChargePoints'), '~Electricity', 0);
+            $this->RegisterVariableFloat('kWhCounterAllChargePoints', $this->Translate('Counter All ChargePoints'), '~Electricity', 0);
         }
 
         public function Destroy()
