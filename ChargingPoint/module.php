@@ -73,7 +73,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableBoolean('LPChargeStatus', $this->Translate('LP Charge Status'), '~Switch', 0);
             $this->RegisterVariableInteger('LPcountPhasesInUse', $this->Translate('LP Phases in use'), '', 0);
 
-            $this->RegisterVariableInteger('LPenergyConsumptionPer100km', $this->Translate('LP Energy Consumption per 100km'), '~Electricity', 0);
+            $this->RegisterVariableFloat('LPenergyConsumptionPer100km', $this->Translate('LP Energy Consumption per 100km'), '~Electricity', 0);
             $this->RegisterVariableInteger('LPfaultState', $this->Translate('LP fault State'), '', 0);
             $this->RegisterVariableFloat('LPkmCharged', $this->Translate('LP km charged'), 'OWB.KM', 0);
             $this->RegisterVariableFloat('LPkWhActualCharged', $this->Translate('LP Actual Charged'), '~Electricity', 0);
