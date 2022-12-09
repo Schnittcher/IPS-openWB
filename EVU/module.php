@@ -15,11 +15,12 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterPropertyString('topic', 'openWB');
 
             $this->RegisterProfileFloat('OWB.FloatAmpere', 'Electricity', '', ' A', 6, 32, 0.01, 2);
+            $this->RegisterProfileInteger('OWB.IntegerAmpere', 'Electricity', '', ' A', 0, 0, 1);
 
             $this->RegisterVariableFloat('APhase1', $this->Translate('Phase 1'), 'OWB.FloatAmpere', 0);
             $this->RegisterVariableFloat('APhase2', $this->Translate('Phase 2'), 'OWB.FloatAmpere', 0);
             $this->RegisterVariableFloat('APhase3', $this->Translate('Phase 3'), 'OWB.FloatAmpere', 0);
-            $this->RegisterVariableInteger('ASchieflast', $this->Translate('A Schieflast'), '', 0);
+            $this->RegisterVariableInteger('ASchieflast', $this->Translate('A Schieflast'), 'OWB.IntegerAmpere', 0);
             $this->RegisterVariableFloat('DailyYieldExportKwh', $this->Translate('Daily Yield Export'), '~Electricity', 0);
             $this->RegisterVariableFloat('DailyYieldImportKwh', $this->Translate('Daily Yield Import'), '~Electricity', 0);
             $this->RegisterVariableInteger('faultState', $this->Translate('Fault State'), '', 0);
@@ -29,6 +30,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('PfPhase2', $this->Translate('Pf Phase 2'), '', 0);
             $this->RegisterVariableFloat('PfPhase3', $this->Translate('Pf Phase 3'), '', 0);
             $this->RegisterVariableFloat('W', $this->Translate('Power'), '~Watt', 0);
+            $this->RegisterVariableFloat('kW', $this->Translate('Power in kw'), '~Power', 0);
             $this->RegisterVariableFloat('WhExported', $this->Translate('Wh Exported'), '~Electricity.Wh', 0);
             $this->RegisterVariableFloat('WhImported', $this->Translate('Wh Imported'), '~Electricity.Wh', 0);
             $this->RegisterVariableFloat('WhImported_temp', $this->Translate('Wh Imported Temp'), '', 0);
@@ -98,6 +100,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/W':
                         $this->SetValue('W', $data['Payload']);
+                        $this->SetValue('kW', $data['Payload'] / 1000);
                         break;
                     case $this->ReadPropertyString('topic') . '/evu/WhExported':
                         $this->SetValue('WhExported', $data['Payload']);

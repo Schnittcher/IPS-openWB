@@ -33,7 +33,9 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableInteger('SimulateRFID', $this->Translate('Simulate RFID'), '', 0);
             $this->EnableAction('SimulateRFID');
             $this->RegisterVariableFloat('WAllChargePoints', $this->Translate('Power all Charge Points'), '~Power', 0);
+            $this->RegisterVariableFloat('kWAllChargePoints', $this->Translate('Power all Charge Points in kW'), '~Power', 0);
             $this->RegisterVariableFloat('WHouseConsumption', $this->Translate('House Consumption'), '~Power', 0);
+            $this->RegisterVariableFloat('kWhCounterAllChargePoints ', $this->Translate('Counter All ChargePoints'), '~Electricity', 0);
         }
 
         public function Destroy()
@@ -69,10 +71,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('minCurrentMinPV', intval($data['Payload']));
                         break;
                     case $this->ReadPropertyString('topic') . '/global/WAllChargePoints':
-                        $this->SetValue('WAllChargePoints', $data['Payload'] / 1000);
+                        $this->SetValue('WAllChargePoints', $data['Payload']);
+                        $this->SetValue('kWAllChargePoints', $data['Payload'] / 1000);
                         break;
                     case $this->ReadPropertyString('topic') . '/global/WHouseConsumption':
                         $this->SetValue('WHouseConsumption', $data['Payload'] / 1000);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/global/kWhCounterAllChargePoints':
+                        $this->SetValue('kWhCounterAllChargePoints', $data['Payload']);
                         break;
                     default:
                         break;

@@ -10,7 +10,9 @@
             "Min Current PVMin": " Mindestladung PVMin",
             "Simulate RFID": "RFID simulieren",
             "Power all Charge Points": "Leistung aller Ladepunkte",
-            "House Consumption": "Verbrauch Haushalt"
+            "Power all Charge Points in kW": "Leistung aller Ladepunkte in kW",
+            "House Consumption": "Verbrauch Haushalt",
+            "Counter All ChargePoints": "Zähler aller Ladepunkte"
         }
     }
 }
