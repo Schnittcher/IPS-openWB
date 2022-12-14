@@ -51,6 +51,11 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 ['blocked', $this->Translate('Blocked'), '', 0xFFFF00],
                 ['charge', $this->Translate('Charge'), '', 0xFF0000],
             ]);
+            $this->RegisterProfileIntegerEx('OWB.LPState', 'Information', '', '', [
+                ['free', $this->Translate('Free'), '', 0x00FF00],
+                ['blocked', $this->Translate('Blocked'), '', 0xFFFF00],
+                ['charge', $this->Translate('Charge'), '', 0xFF0000],
+            ]);
 
             $this->RegisterVariableInteger('LPSoC', $this->Translate('LP SoC'), '~Intensity.100', 0);
             $this->RegisterVariableInteger('LPAConfigured', $this->Translate('LP Max charge current'), 'OWB.Ladeleistung', 0);
@@ -104,7 +109,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->EnableAction('LPresetEnergyToCharge');
             $this->RegisterVariableInteger('LPsocToChargeTo', $this->Translate('LP SoC to charge to'), '~Intensity.100', 0);
             $this->EnableAction('LPsocToChargeTo');
-            $this->RegisterVariableString('LPState', $this->Translate('LP State'), 'OWB.LPState', 0);
+            $this->RegisterVariableInteger('LPState', $this->Translate('LP State'), 'OWB.LPState', 0);
         }
 
         public function Destroy()
@@ -162,11 +167,11 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         $this->SetValue('LPboolChargeStat', $data['Payload']);
                         if (!$data['Payload']) {
                             if ($this->GetValue('LPPlugStat')) {
-                                $this->SetValue('LPState', 'blocked');
+                                $this->SetValue('LPState', 1); //Blocked
                             }
                         } else {
                             if ($this->GetValue('LPPlugStat')) {
-                                $this->SetValue('LPState', 'charge');
+                                $this->SetValue('LPState', 2); //Charge
                             }
                         }
                         break;
@@ -181,7 +186,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         switch (intval($data['Payload'])) {
                             case 0:
                                 $this->SetValue('LPPlugStat', false);
-                                $this->SetValue('LPState', 'free');
+                                $this->SetValue('LPState', 0); //Frei
                                 break;
                             case 1:
                                 $this->SetValue('LPPlugStat', true);
