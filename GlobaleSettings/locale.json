@@ -12,7 +12,8 @@
             "Power all Charge Points": "Leistung aller Ladepunkte",
             "Power all Charge Points in kW": "Leistung aller Ladepunkte in kW",
             "House Consumption": "Verbrauch Haushalt",
-            "Counter All ChargePoints": "Zähler aller Ladepunkte"
+            "Counter All ChargePoints": "Zähler aller Ladepunkte",
+            "Price for KWh": "Preis pro KWh"
         }
     }
 }

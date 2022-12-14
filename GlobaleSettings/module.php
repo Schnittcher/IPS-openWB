@@ -36,6 +36,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('kWAllChargePoints', $this->Translate('Power all Charge Points in kW'), '~Power', 0);
             $this->RegisterVariableFloat('WHouseConsumption', $this->Translate('House Consumption'), '~Power', 0);
             $this->RegisterVariableFloat('kWhCounterAllChargePoints', $this->Translate('Counter All ChargePoints'), '~Electricity', 0);
+            $this->RegisterVariableFloat('priceForKWh', $this->Translate('Price for KWh'), '~Euro', 0);
         }
 
         public function Destroy()
@@ -79,6 +80,9 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                         break;
                     case $this->ReadPropertyString('topic') . '/global/kWhCounterAllChargePoints':
                         $this->SetValue('kWhCounterAllChargePoints', $data['Payload']);
+                        break;
+                    case $this->ReadPropertyString('topic') . '/system/priceForKWh':
+                        $this->SetValue('priceForKWh', $data['Payload']);
                         break;
                     default:
                         break;
