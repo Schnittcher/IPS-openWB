@@ -46,15 +46,10 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 [true, $this->Translate('Open'),  '', 0xFF0000]
             ]);
 
-            $this->RegisterProfileStringEx('OWB.LPState', 'Information', '', '', [
-                ['free', $this->Translate('Free'), '', 0x00FF00],
-                ['blocked', $this->Translate('Blocked'), '', 0xFFFF00],
-                ['charge', $this->Translate('Charge'), '', 0xFF0000],
-            ]);
             $this->RegisterProfileIntegerEx('OWB.LPState', 'Information', '', '', [
-                ['free', $this->Translate('Free'), '', 0x00FF00],
-                ['blocked', $this->Translate('Blocked'), '', 0xFFFF00],
-                ['charge', $this->Translate('Charge'), '', 0xFF0000],
+                [0, $this->Translate('Free'), '', 0x00FF00],
+                [1, $this->Translate('Blocked'), '', 0xFFFF00],
+                [2, $this->Translate('Charge'), '', 0xFF0000],
             ]);
 
             $this->RegisterVariableInteger('LPSoC', $this->Translate('LP SoC'), '~Intensity.100', 0);
