@@ -53,6 +53,12 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             if (!empty($this->ReadPropertyString('topic'))) {
                 $this->SendDebug('ReceiveData :: JSON', $JSONString, 0);
                 $data = json_decode($JSONString, true);
+
+                //Für MQTT Fix in IPS Version 6.3
+                if (IPS_GetKernelDate() > 1670886000) {
+                    $data['Payload'] = utf8_decode($data['Payload']);
+                }
+
                 switch ($data['Topic']) {
                     case $this->ReadPropertyString('topic') . '/pv/boolPVConfigured':
                         $this->SetValue('boolPVConfigured', $data['Payload']);
@@ -81,7 +87,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     case $this->ReadPropertyString('topic') . '/pv/priorityModeEVBattery':
                         $this->SetValue('priorityModeEVBattery', $data['Payload']);
                         break;
-                        
+
                     default:
                         break;
                 }
