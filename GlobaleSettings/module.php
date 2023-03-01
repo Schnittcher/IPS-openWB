@@ -26,6 +26,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
             $this->RegisterVariableInteger('GlobalChargeMode', $this->Translate('Charge Mode'), 'OWBMQTT.Lademodus', 0);
             $this->EnableAction('GlobalChargeMode');
+            $this->RegisterVariableInteger('maxEVSECurrentAllowed', $this->Translate('Max EVSE Current Allowed'), 'OWB.Ladeleistung', 0);
+            $this->EnableAction('maxEVSECurrentAllowed');
             $this->RegisterVariableInteger('minEVSECurrentAllowed', $this->Translate('Min EVSE Current Allowed'), 'OWB.Ladeleistung', 0);
             $this->EnableAction('minEVSECurrentAllowed');
             $this->RegisterVariableInteger('minCurrentMinPV', $this->Translate('Min Current PVMin'), 'OWB.Ladeleistung', 0);
@@ -71,6 +73,9 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     case $this->ReadPropertyString('topic') . '/global/ChargeMode':
                         $this->SetValue('GlobalChargeMode', $data['Payload']);
                         break;
+                    case $this->ReadPropertyString('topic') . '/config/get/global/maxEVSECurrentAllowed':
+                        $this->SetValue('maxEVSECurrentAllowed', $data['Payload']);
+                        break;
                     case $this->ReadPropertyString('topic') . '/config/get/global/minEVSECurrentAllowed':
                         $this->SetValue('minEVSECurrentAllowed', $data['Payload']);
                         break;
@@ -101,6 +106,9 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             switch ($Ident) {
                 case 'GlobalChargeMode':
                     $this->MQTTCommand('set/ChargeMode', $Value);
+                    break;
+                case 'maxcEVSECurrentAllowed':
+                    $this->MQTTCommand('config/set/global/maxEVSECurrentAllowed', $Value);
                     break;
                 case 'minEVSECurrentAllowed':
                     $this->MQTTCommand('config/set/global/minEVSECurrentAllowed', $Value);
