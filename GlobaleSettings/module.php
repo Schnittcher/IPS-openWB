@@ -107,7 +107,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 case 'GlobalChargeMode':
                     $this->MQTTCommand('set/ChargeMode', $Value);
                     break;
-                case 'maxcEVSECurrentAllowed':
+                case 'maxEVSECurrentAllowed':
                     $this->MQTTCommand('config/set/global/maxEVSECurrentAllowed', $Value);
                     break;
                 case 'minEVSECurrentAllowed':
