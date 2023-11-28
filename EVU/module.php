@@ -143,43 +143,43 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $lp = $this->ReadPropertyInteger('lp');
             switch ($Ident) {
                 case 'APhase1':
-                    $this->MQTTCommand('openWB/set/evu/APhase1', floatval($Value));
+                    $this->MQTTCommand('set/evu/APhase1', floatval($Value));
                     break;
                 case 'APhase2':
-                    $this->MQTTCommand('openWB/set/evu/APhase2', floatval($Value));
+                    $this->MQTTCommand('set/evu/APhase2', floatval($Value));
                     break;
                 case 'APhase3':
-                    $this->MQTTCommand('openWB/set/evu/APhase3', floatval($Value));
+                    $this->MQTTCommand('set/evu/APhase3', floatval($Value));
                     break;
                 case 'Hz':
-                    $this->MQTTCommand('openWB/set/evu/Hz', floatval($Value));
+                    $this->MQTTCommand('set/evu/Hz', floatval($Value));
                     break;
                 case 'PfPhase1':
-                    $this->MQTTCommand('openWB/set/evu/PfPhase1', floatval($Value));
+                    $this->MQTTCommand('set/evu/PfPhase1', floatval($Value));
                     break;
                 case 'PfPhase2':
-                    $this->MQTTCommand('openWB/set/evu/PfPhase2', floatval($Value));
+                    $this->MQTTCommand('set/evu/PfPhase2', floatval($Value));
                     break;
                 case 'PfPhase3':
-                    $this->MQTTCommand('openWB/set/evu/PfPhase3', floatval($Value));
+                    $this->MQTTCommand('set/evu/PfPhase3', floatval($Value));
                     break;
                 case 'WhExported':
-                    $this->MQTTCommand('openWB/set/evu/WhExported', floatval($Value));
+                    $this->MQTTCommand('set/evu/WhExported', floatval($Value));
                     break;
                 case 'WhImported':
-                    $this->MQTTCommand('openWB/set/evu/WhImported', floatval($Value));
+                    $this->MQTTCommand('set/evu/WhImported', floatval($Value));
                     break;
                 case 'WPhase1':
-                    $this->MQTTCommand('openWB/set/evu/WPhase1', floatval($Value));
+                    $this->MQTTCommand('set/evu/WPhase1', floatval($Value));
                     break;
                 case 'WPhase2':
-                    $this->MQTTCommand('openWB/set/evu/WPhase2', floatval($Value));
+                    $this->MQTTCommand('set/evu/WPhase2', floatval($Value));
                     break;
                 case 'WPhase3':
-                    $this->MQTTCommand('openWB/set/evu/WPhase3', floatval($Value));
+                    $this->MQTTCommand('set/evu/WPhase3', floatval($Value));
                     break;
                 case 'W':
-                    $this->MQTTCommand('openWB/set/evu/W', floatval($Value));
+                    $this->MQTTCommand('set/evu/W', floatval($Value));
                     break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);

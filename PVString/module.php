@@ -20,8 +20,10 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableFloat('DailyYieldKwh', $this->Translate('Daily Yield'), '~Electricity', 0);
             $this->RegisterVariableFloat('MonthlyYieldKwh', $this->Translate('Monthly Yield'), '~Electricity', 0);
             $this->RegisterVariableFloat('W', $this->Translate('Power'), '~Watt', 0);
+            $this->EnableAction('W');
             $this->RegisterVariableFloat('W70PVDyn', $this->Translate('W 70 PV Dyn'), '~Watt', 0);
             $this->RegisterVariableFloat('WhCounter', $this->Translate('Wh Counter'), '~Electricity.Wh', 0);
+            $this->EnableAction('WhCounter');
             $this->RegisterVariableFloat('WHExport_temp', $this->Translate('Wh Export temp'), '', 0);
             $this->RegisterVariableFloat('WHImported_temp', $this->Translate('Wh Imported temp'), '', 0);
             $this->RegisterVariableFloat('YearlyYieldKwh', $this->Translate('Yearly Yield'), '~Electricity', 0);
@@ -97,7 +99,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         }
         public function RequestAction($Ident, $Value)
         {
+            $pv = $this->ReadPropertyInteger('pv');
             switch ($Ident) {
+                case 'W':
+                    $this->MQTTCommand('set/pv/' . $pv . '/W', floatval($Value));
+                    break;
+                case 'WhCounter':
+                    $this->MQTTCommand('set/pv/' . $pv . '/WhCounter', floatval($Value));
+                    break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;

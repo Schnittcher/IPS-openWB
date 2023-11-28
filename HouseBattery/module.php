@@ -104,16 +104,16 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $lp = $this->ReadPropertyInteger('lp');
             switch ($Ident) {
                 case 'SoC':
-                    $this->MQTTCommand('openWB/set/houseBattery/%Soc', intval($Value));
+                    $this->MQTTCommand('set/houseBattery/%Soc', intval($Value));
                     break;
                 case 'W':
-                    $this->MQTTCommand('openWB/set/houseBattery/W', floatval($Value));
+                    $this->MQTTCommand('set/houseBattery/W', floatval($Value));
                     break;
                 case 'WhExported':
-                    $this->MQTTCommand('openWB/set/houseBattery/WhExported', floatval($Value));
+                    $this->MQTTCommand('set/houseBattery/WhExported', floatval($Value));
                     break;
                 case 'WhImported':
-                    $this->MQTTCommand('openWB/set/houseBattery/WhImported', floatval($Value));
+                    $this->MQTTCommand('set/houseBattery/WhImported', floatval($Value));
                     break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
