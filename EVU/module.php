@@ -18,8 +18,11 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterProfileInteger('OWB.IntegerAmpere', 'Electricity', '', ' A', 0, 0, 1);
 
             $this->RegisterVariableFloat('APhase1', $this->Translate('Phase 1'), 'OWB.FloatAmpere', 0);
+            $this->EnableAction('APhase1');
             $this->RegisterVariableFloat('APhase2', $this->Translate('Phase 2'), 'OWB.FloatAmpere', 0);
+            $this->EnableAction('APhase2');
             $this->RegisterVariableFloat('APhase3', $this->Translate('Phase 3'), 'OWB.FloatAmpere', 0);
+            $this->EnableAction('APhase3');
             $this->RegisterVariableInteger('ASchieflast', $this->Translate('A Schieflast'), 'OWB.IntegerAmpere', 0);
             $this->RegisterVariableFloat('DailyYieldExportKwh', $this->Translate('Daily Yield Export'), '~Electricity', 0);
             $this->RegisterVariableFloat('DailyYieldImportKwh', $this->Translate('Daily Yield Import'), '~Electricity', 0);
@@ -27,16 +30,25 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterVariableString('faultStr', $this->Translate('Fault State'), '', 0);
             $this->RegisterVariableFloat('Hz', $this->Translate('Frequency'), '~Hertz', 0);
             $this->RegisterVariableFloat('PfPhase1', $this->Translate('Pf Phase 1'), '', 0);
+            $this->EnableAction('PfPhase1');
             $this->RegisterVariableFloat('PfPhase2', $this->Translate('Pf Phase 2'), '', 0);
+            $this->EnableAction('PfPhase2');
             $this->RegisterVariableFloat('PfPhase3', $this->Translate('Pf Phase 3'), '', 0);
+            $this->EnableAction('PfPhase3');
             $this->RegisterVariableFloat('W', $this->Translate('Power'), '~Watt', 0);
+            $this->EnableAction('W');
             $this->RegisterVariableFloat('kW', $this->Translate('Power in kw'), '~Power', 0);
             $this->RegisterVariableFloat('WhExported', $this->Translate('Wh Exported'), '~Electricity.Wh', 0);
+            $this->EnableAction('WhExported');
             $this->RegisterVariableFloat('WhImported', $this->Translate('Wh Imported'), '~Electricity.Wh', 0);
+            $this->EnableAction('WhImported');
             $this->RegisterVariableFloat('WhImported_temp', $this->Translate('Wh Imported Temp'), '', 0);
             $this->RegisterVariableFloat('WPhase1', $this->Translate('Power Phase 1'), '~Watt', 0);
+            $this->EnableAction('WPhase1');
             $this->RegisterVariableFloat('WPhase2', $this->Translate('Power Phase 2'), '~Watt', 0);
+            $this->EnableAction('WPhase2');
             $this->RegisterVariableFloat('WPhase3', $this->Translate('Power Phase 3'), '~Watt', 0);
+            $this->EnableAction('WPhase3');
         }
 
         public function Destroy()
@@ -128,7 +140,47 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         public function RequestAction($Ident, $Value)
         {
+            $lp = $this->ReadPropertyInteger('lp');
             switch ($Ident) {
+                case 'APhase1':
+                    $this->MQTTCommand('openWB/set/evu/APhase1', floatval($Value));
+                    break;
+                case 'APhase2':
+                    $this->MQTTCommand('openWB/set/evu/APhase2', floatval($Value));
+                    break;
+                case 'APhase3':
+                    $this->MQTTCommand('openWB/set/evu/APhase3', floatval($Value));
+                    break;
+                case 'Hz':
+                    $this->MQTTCommand('openWB/set/evu/Hz', floatval($Value));
+                    break;
+                case 'PfPhase1':
+                    $this->MQTTCommand('openWB/set/evu/PfPhase1', floatval($Value));
+                    break;
+                case 'PfPhase2':
+                    $this->MQTTCommand('openWB/set/evu/PfPhase2', floatval($Value));
+                    break;
+                case 'PfPhase3':
+                    $this->MQTTCommand('openWB/set/evu/PfPhase3', floatval($Value));
+                    break;
+                case 'WhExported':
+                    $this->MQTTCommand('openWB/set/evu/WhExported', floatval($Value));
+                    break;
+                case 'WhImported':
+                    $this->MQTTCommand('openWB/set/evu/WhImported', floatval($Value));
+                    break;
+                case 'WPhase1':
+                    $this->MQTTCommand('openWB/set/evu/WPhase1', floatval($Value));
+                    break;
+                case 'WPhase2':
+                    $this->MQTTCommand('openWB/set/evu/WPhase2', floatval($Value));
+                    break;
+                case 'WPhase3':
+                    $this->MQTTCommand('openWB/set/evu/WPhase3', floatval($Value));
+                    break;
+                case 'W':
+                    $this->MQTTCommand('openWB/set/evu/W', floatval($Value));
+                    break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;

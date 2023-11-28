@@ -15,15 +15,19 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->RegisterPropertyString('topic', 'openWB');
 
             $this->RegisterVariableInteger('SoC', $this->Translate('SoC'), '~Intensity.100', 0);
+            $this->EnableAction('SoC');
             $this->RegisterVariableBoolean('boolHouseBatteryConfigured', $this->Translate('House Battery Configured'), '~Switch', 0);
             $this->RegisterVariableFloat('DailyYieldExportKwh', $this->Translate('Daily Yield Export'), '~Electricity', 0);
             $this->RegisterVariableFloat('DailyYieldImportKwh', $this->Translate('Daily Yield Import'), '~Electricity', 0);
             $this->RegisterVariableInteger('faultState', $this->Translate('Fault State'), '', 0);
             $this->RegisterVariableString('faultStr', $this->Translate('Fault State'), '', 0);
             $this->RegisterVariableFloat('W', $this->Translate('Power'), '~Watt', 0);
+            $this->EnableAction('W');
             $this->RegisterVariableFloat('WhExported', $this->Translate('Wh Exported'), '~Electricity.Wh', 0);
+            $this->EnableAction('WhExported');
             $this->RegisterVariableFloat('WhExported_temp', $this->Translate('Wh Exported Temp'), '', 0);
             $this->RegisterVariableFloat('WhImported', $this->Translate('Wh Imported'), '~Electricity.Wh', 0);
+            $this->EnableAction('WhImported');
             $this->RegisterVariableFloat('WhImported_temp', $this->Translate('Wh Imported Temp'), '', 0);
         }
 
@@ -97,7 +101,20 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         public function RequestAction($Ident, $Value)
         {
+            $lp = $this->ReadPropertyInteger('lp');
             switch ($Ident) {
+                case 'SoC':
+                    $this->MQTTCommand('openWB/set/houseBattery/%Soc', intval($Value));
+                    break;
+                case 'W':
+                    $this->MQTTCommand('openWB/set/houseBattery/W', floatval($Value));
+                    break;
+                case 'WhExported':
+                    $this->MQTTCommand('openWB/set/houseBattery/WhExported', floatval($Value));
+                    break;
+                case 'WhImported':
+                    $this->MQTTCommand('openWB/set/houseBattery/WhImported', floatval($Value));
+                    break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;
