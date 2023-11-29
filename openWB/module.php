@@ -176,12 +176,14 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             $result = $this->sendRequest('get', 'all');
 
-            foreach ($result as $key => $value) {
-                if (@$this->GetIDForIdent($key) != false) {
-                    $this->SendDebug($this->GetIDForIdent($key), 'Key: ' . $key . ' - Value: ' . $value, 0);
-                    $this->SetValue($key, $value);
-                } else {
-                    $this->SendDebug('Variable not exist', 'Key: ' . $key . ' - Value: ' . $value, 0);
+            if ($result !== false) {
+                foreach ($result as $key => $value) {
+                    if (@$this->GetIDForIdent($key) != false) {
+                        $this->SendDebug($this->GetIDForIdent($key), 'Key: ' . $key . ' - Value: ' . $value, 0);
+                        $this->SetValue($key, $value);
+                    } else {
+                        $this->SendDebug('Variable not exist', 'Key: ' . $key . ' - Value: ' . $value, 0);
+                    }
                 }
             }
         }
@@ -210,15 +212,19 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             if ($headerInfo['http_code'] == 200) {
                 if ($apiResult != false) {
                     $this->SetStatus(102);
-                    return json_decode($apiResult, false);
+                    $returnValue = json_decode($apiResult, false);
                 } else {
                     $this->LogMessage('openWbConnect sendRequest Error' . curl_error($ch), 10205);
                     $this->SetStatus(201);
+                    $returnValue = false;
                 }
             } else {
                 $this->LogMessage('openWbConnect sendRequest Error - Curl Error:' . curl_error($ch) . 'HTTP Code: ' . $headerInfo['http_code'], 10205);
                 $this->SetStatus(202);
+                $returnValue = false;
             }
             curl_close($ch);
+
+            return $returnValue;
         }
     }
