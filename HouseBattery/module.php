@@ -101,7 +101,6 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         public function RequestAction($Ident, $Value)
         {
-            $lp = $this->ReadPropertyInteger('lp');
             switch ($Ident) {
                 case 'SoC':
                     $this->MQTTCommand('set/houseBattery/%Soc', intval($Value));
