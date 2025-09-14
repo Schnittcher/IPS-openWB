@@ -13,7 +13,10 @@
             "Power all Charge Points in kW": "Leistung aller Ladepunkte in kW",
             "House Consumption": "Verbrauch Haushalt",
             "Counter All ChargePoints": "Zähler aller Ladepunkte",
-            "Price for KWh": "Preis pro KWh"
+            "Price for KWh": "Preis pro KWh",
+            "Battery": "Speicher",
+            "Auto": "Auto",
+            "Priority Mode EV Battery": "Prioritätsmodus EV-Batterie"
         }
     }
 }

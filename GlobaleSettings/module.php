@@ -22,6 +22,11 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 [4, $this->translate('Standby'),  '', -1]
             ]);
 
+            $this->RegisterProfileIntegerEx('OWBMQTT.priorityModeEVBattery', 'Battery', '', '', [
+                [0, $this->translate('Battery'),  '', -1],
+                [1, $this->translate('Auto'),  '', -1]
+            ]);
+
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', ' A', 6, 32, 1);
 
             $this->RegisterVariableInteger('GlobalChargeMode', $this->Translate('Charge Mode'), 'OWBMQTT.Lademodus', 0);
@@ -34,6 +39,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             $this->EnableAction('minCurrentMinPV');
             $this->RegisterVariableInteger('SimulateRFID', $this->Translate('Simulate RFID'), '', 0);
             $this->EnableAction('SimulateRFID');
+            $this->RegisterVariableInteger('PriorityModeEVBattery', $this->Translate('Priority Mode EV Battery'), '', 0);
+            $this->EnableAction('PriorityModeEVBattery');
             $this->RegisterVariableFloat('WAllChargePoints', $this->Translate('Power all Charge Points'), '~Power', 0);
             $this->RegisterVariableFloat('kWAllChargePoints', $this->Translate('Power all Charge Points in kW'), '~Power', 0);
             $this->RegisterVariableFloat('WHouseConsumption', $this->Translate('House Consumption'), '~Power', 0);
@@ -82,6 +89,9 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                     case $this->ReadPropertyString('topic') . '/config/get/pv/minCurrentMinPv':
                         $this->SetValue('minCurrentMinPV', intval($data['Payload']));
                         break;
+                    case $this->ReadPropertyString('topic') . '/config/get/priorityModeEVBattery':
+                        $this->SetValue('priorityModeEVBattery', $data['Payload']);
+                        break;
                     case $this->ReadPropertyString('topic') . '/global/WAllChargePoints':
                         $this->SetValue('WAllChargePoints', $data['Payload']);
                         $this->SetValue('kWAllChargePoints', $data['Payload'] / 1000);
@@ -122,7 +132,6 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 case 'priorityModeEVBattery':
                     $this->MQTTCommand('config/set/pv/priorityModeEVBattery', $Value);
                     break;
-
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;
