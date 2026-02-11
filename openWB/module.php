@@ -20,8 +20,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
                 [0, $this->translate('Immediately'),  '', -1],
                 [1, $this->translate('Min+PV'),  '', -1],
                 [2, $this->translate('Only PV'),  '', -1],
-                [3, $this->translate('Standby'),  '', -1],
-                [4, $this->translate('Stop'),  '', -1]
+                [3, $this->translate('Stop'),  '', -1],
+                [4, $this->translate('Standby'),  '', -1]
             ]);
 
             $this->RegisterProfileInteger('OWB.Ladeleistung', 'Electricity', '', ' A', 6, 32, 1);
