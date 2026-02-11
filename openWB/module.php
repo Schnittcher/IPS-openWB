@@ -179,7 +179,19 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
             foreach ($result as $key => $value) {
                 if (@$this->GetIDForIdent($key) != false) {
                     $this->SendDebug($this->GetIDForIdent($key), 'Key: ' . $key . ' - Value: ' . $value, 0);
-                    $this->SetValue($key, $value);
+                    // Variablentyp (0: Boolean, 1: Integer, 2: Float, 3: String)
+                    switch(IPS_GetVariable($this->GetIDForIdent($key))['VariableType'])
+                    {
+                        case 1:
+                            $this->SetValue($key, (int)$value);
+                            break;
+                        case 2:
+                            $this->SetValue($key, (float)$value);
+                            break;
+                        default:
+                            $this->SetValue($key, $value);
+                            break;
+                    }
                 } else {
                     $this->SendDebug('Variable not exist', 'Key: ' . $key . ' - Value: ' . $value, 0);
                 }
