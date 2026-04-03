@@ -98,7 +98,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             switch ($Ident) {
                 case 'priorityModeEVBattery':
-
+                    $this->MQTTCommand('set/pv/priorityModeEVBattery', $Value);
+                    break;
                 default:
                     $this->LogMessage('Invalid Action', KL_WARNING);
                     break;
