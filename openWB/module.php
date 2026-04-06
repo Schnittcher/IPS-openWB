@@ -11,6 +11,7 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             //Never delete this line!
             parent::Create();
+            $this->RegisterPropertyBoolean('Open', false);
             $this->RegisterPropertyString('Host', '');
             $this->RegisterPropertyInteger('UpdateInterval', 10);
 
@@ -130,8 +131,15 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
         {
             //Never delete this line!
             parent::ApplyChanges();
-            if ($this->ReadPropertyString('Host') != '') {
+            if ($this->ReadPropertyString('Host') != '' || false != $this->ReadPropertyBoolean('Open')) {
+                // activate timer
+                $this->SetStatus(102);
                 $this->SetTimerInterval('OPENWB_UpdateState', $this->ReadPropertyInteger('UpdateInterval') * 1000);
+            }
+            else {
+                // deactivate timer
+                $this->SetStatus(104);
+                $this->SetTimerInterval('OPENWB_UpdateState', 0);
             }
         }
 
@@ -188,7 +196,8 @@ require_once __DIR__ . '/../libs/helper/VariableProfileHelper.php';
 
         private function sendRequest(string $endpoint, $value)
         {
-            if ($this->ReadPropertyString('Host') == '') {
+            if ($this->ReadPropertyString('Host') == '' || false == $this->ReadPropertyBoolean('Open')) {
+                $this->SetStatus(104);
                 return false;
             }
             $ch = curl_init();
